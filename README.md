@@ -21,3 +21,8 @@ JIRA_API_KEY=your_jira_api_key
 INCIDENT_IO_API_KEY=your_incident_io_api_key
 SLACK_WEBHOOK_URL_ENGINEERING=your_slack_webhook_url_1
 SLACK_WEBHOOK_URL_EXECUTIVE=your_slack_webhook_url_2
+**Local Setup & Execution**
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
