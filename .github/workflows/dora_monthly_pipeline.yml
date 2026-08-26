@@ -1,0 +1,53 @@
+name: Monthly DORA Metrics Pipeline & GitHub Pages Deployment
+
+on:
+  schedule:
+    - cron: '0 2 1 * *' # Triggers on the 1st of every month at 02:00 UTC
+  workflow_dispatch: # Enables manual execution triggers from the GitHub Actions UI
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Sequential Data & Agent Pipeline
+        env:
+          INCIDENT_IO_API_KEY: ${{ secrets.INCIDENT_IO_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          python ingestion/incident_fetcher.py
+          python ingestion/github_fetcher.py
+          python ingestion/jira_fetcher.py
+          python wrangling/mttd_mttr_engine.py
+          python wrangling/df_cfr_engine.py
+          python agent/llm_agent.py
+          python publisher/site_generator.py
+
+      - name: Headless Deployment to GitHub Pages (gh-pages)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+          force_orphan: true
