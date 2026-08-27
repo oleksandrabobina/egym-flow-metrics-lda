@@ -2,9 +2,37 @@ import os
 import json
 import sqlite3
 import statistics
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_PATH = os.path.join("database", "dora_metrics.db")
 OUTPUT_DIR = "docs"
+
+# Slack Feature Flag & Environment Configuration
+ENABLE_SLACK = os.getenv("ENABLE_SLACK_NOTIFICATIONS", "false").lower() == "true"
+SLACK_WEBHOOK_ENG = os.getenv("SLACK_WEBHOOK_URL_ENGINEERING")
+SLACK_WEBHOOK_EXEC = os.getenv("SLACK_WEBHOOK_URL_EXECUTIVE")
+
+def notify_slack(message, webhook_url):
+    """Sends Slack update if feature flag is enabled, otherwise skips gracefully."""
+    if not ENABLE_SLACK:
+        print("Notice: Direct Slack notifications disabled (ENABLE_SLACK_NOTIFICATIONS=false). Skipping webhook push.")
+        return
+
+    if not webhook_url or "your_slack_webhook" in webhook_url:
+        print("Notice: No valid Slack Webhook URL provided. Skipping notification.")
+        return
+
+    try:
+        response = requests.post(webhook_url, json={"text": message})
+        if response.status_code == 200:
+            print("Successfully sent update to Slack.")
+        else:
+            print(f"Warning: Slack webhook returned status {response.status_code}")
+    except Exception as e:
+        print(f"Error sending Slack notification: {e}")
 
 def ensure_output_dir():
     if not os.path.exists(OUTPUT_DIR):
@@ -193,6 +221,10 @@ def main():
         realm_map = fetch_realms_and_teams(cursor)
         generate_landing_page(realm_map)
         generate_realm_dashboards(cursor, realm_map)
+
+        # Send optional Slack notification after successful generation
+        slack_msg = f"🚀 DORA Metrics dashboards generated for {len(realm_map)} realms."
+        notify_slack(slack_msg, SLACK_WEBHOOK_ENG)
     finally:
         conn.close()
 
