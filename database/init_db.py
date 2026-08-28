@@ -1,23 +1,26 @@
 import os
 import sqlite3
 
-def init_database():
-    db_path = os.path.join("database", "dora_metrics.db")
-    schema_path = os.path.join("database", "schema.sql")
+DB_PATH = os.path.join("database", "dora_metrics.db")
+SCHEMA_PATH = os.path.join("database", "schema.sql")
 
-    print(f"Initializing database at {db_path}...")
-    
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
+def init_db():
+    print(f"Initializing database schema at {DB_PATH}...")
+    if not os.path.exists(SCHEMA_PATH):
+        print(f"Error: Schema file not found at {SCHEMA_PATH}")
+        return
 
-    with open(schema_path, "r") as f:
-        sql_script = f.read()
-
-    cursor.executescript(sql_script)
-    conn.commit()
-    conn.close()
-
-    print("Database initialized successfully!")
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        with open(SCHEMA_PATH, "r") as f:
+            schema_sql = f.read()
+        conn.executescript(schema_sql)
+        conn.commit()
+        print("Database schema initialized successfully.")
+    except Exception as e:
+        print(f"Error initializing database: {e}")
+    finally:
+        conn.close()
 
 if __name__ == "__main__":
-    init_database()
+    init_db()

@@ -1,0 +1,155 @@
+id,status,severity,impact_started_at,identified_at,fixed_at,mttd,mttr,incident_duration,affected_team,root_cause_services,affected_products,incident_lead
+269,Closed,Critical,2026-08-24T15:45:00Z,2026-08-24T16:32:24.639Z,2026-08-24T16:40:24.367Z,2844,3324,4402,WP Access Experience | WP Partner Experience,Class Booking MWA,Wellpass,Imane Misrar
+267,Closed,Critical,2026-08-17T15:53:00Z,2026-08-17T16:24:36.82Z,2026-08-17T16:28:00Z,1896,2100,2395,WP Discovery,Gymfinder-backend,Wellpass,Jacob Lawton
+266,Closed,Critical,2026-08-13T08:56:00Z,2026-08-13T09:21:01.229Z,2026-08-13T09:23:46.277Z,1501,1666,2138,WP Discovery | WP Access Experience,Gymfinder-backend,Wellpass,Cyril Bonnet
+265,Documenting,Critical,2026-08-12T12:31:00Z,2026-08-12T14:29:00Z,2026-08-12T13:07:00Z,7080,2160,2160,WP Offer Acquisition | WP Company Growth,Qualitrain-User-Service,,Dmytro Sholom
+264,Closed,Critical,2026-08-11T11:55:00Z,2026-08-11T14:09:00Z,2026-08-11T14:24:00Z,8040,8940,8940,BMA | Users and Locations,GCP,,Mehdi Ben Chikha
+262,Closed,Critical,2026-07-31T08:23:00Z,2026-07-31T08:25:00Z,2026-07-31T08:34:00Z,120,660,660,SRE | api-platform | Users and Locations,partner-gateway,Partner MMS Integrations,David Greisler
+259,Closed,Critical,2026-07-20T08:34:00Z,2026-07-20T09:37:00Z,2026-07-20T09:55:49.253Z,3780,4909,5626,WP Offer Acquisition,Qualitrain-User-Service,Wellpass,Cyril Bonnet
+256,Closed,Critical,2026-07-08T12:26:44.247Z,2026-07-08T12:40:30.708Z,,,,,WP Company Growth,HRIS-connector | Qualitrain-Web-Gateway,Wellpass,Freddy Stéphane Moussandja Nyembi
+255,Closed,Critical,2026-07-08T08:13:00Z,2026-07-08T09:55:00Z,2026-07-08T10:09:00Z,6120,6960,6960,MSW,Device-Gateway,Smart Strength,Thang Kim Tran
+251,Closed,Critical,2026-07-02T12:24:00Z,2026-07-02T12:30:00Z,2026-07-02T13:07:00Z,360,2580,3420,MSW,Partner API,,Eldad Zack
+250,Closed,Non-Critical,2026-06-26T12:21:00Z,2026-06-26T15:15:00Z,2026-06-26T15:55:56.634Z,10440,12896,247022,WP Discovery,Mobile-Api,Wellpass,Tanya Gdulya
+249,Closed,Critical,2026-06-23T11:00:00Z,2026-06-23T16:55:06.887Z,2026-06-24T15:33:29.042Z,21306,22309,23413,WP Access Experience,Anticorr-Mindbody | Anticorr-Monday,Wellpass,Cyril Bonnet
+248,Closed,Non-Critical,2026-06-23T09:57:00Z,2026-06-23T11:15:00Z,2026-06-23T11:21:00Z,4680,5040,5580,Unassigned,,,Panshul Gupta
+247,Closed,Critical,2026-06-21T22:23:00Z,2026-06-22T10:38:32.27Z,,44132,,46414,WP Partner Experience,Operator Portal Backend,Wellpass,Alexandra Rusu
+246,Closed,Critical,2026-06-02T15:45:00Z,2026-06-02T16:07:00Z,2026-06-02T17:15:00Z,1320,5400,12710,MSW,GCP | Machine-Training | Machine-User-Settings,Smart Strength | Smart Flex,Siddik Acil
+245,Closed,Critical,2026-05-28T07:18:00Z,2026-05-28T08:02:56.063Z,2026-05-28T07:51:35.669Z,2696,2015,3282,WP Discovery | WP Access Experience,Gymfinder-backend,Wellpass,Richard Ricciardelli
+242,Closed,Critical,2026-05-12T15:41:00Z,2026-05-13T10:10:00Z,2026-05-19T10:53:49.379Z,66540,501168,501654,WP Access Experience | WP Partner Integrations,Anticorr-Monday,Gymlib,Imane Misrar
+241,Closed,Critical,2026-05-12T15:30:00Z,2026-05-12T21:05:00Z,2026-05-13T00:45:00Z,20100,33300,34800,BMA-Core | Core Workouts | Users and Locations | Smart Cardio | MSW | Trainer,Galaxy | Upds | Measurements,Fitness Hub | Smart Cardio | Smart Strength | Trainer App | Branded Member App (BMA),Viktor Kholod
+239,Closed,Critical,2026-05-04T07:00:00Z,2026-05-05T08:00:00Z,2026-05-05T08:19:35.281Z,81299,82474,84837,SRE,DNS,EGYM Website,Tanja Fox
+236,Closed,Critical,2026-04-28T14:00:00Z,2026-05-04T13:31:32.313Z,2026-05-04T13:45:29.513Z,516692,517529,518156,WP Discovery | WP Access Experience,Gymfinder-backend | Gymlib-Backend,Gymlib,Cyril Bonnet
+233,Closed,Critical,2026-04-21T06:58:00Z,2026-04-21T16:28:00Z,2026-04-22T15:57:00Z,34200,118740,118740,WP Access Experience,External (Partner outages etc.),,Cyril Bonnet
+229,Closed,Non-Critical,2026-04-14T10:45:00Z,2026-04-14T11:30:00Z,2026-04-14T12:15:00Z,2700,5400,21513,XT | MSW,Workout-Streak,Smart Strength | Genius,Cem Freimoser
+228,Closed,Critical,2026-04-13T08:30:00Z,2026-04-13T13:26:00Z,2026-04-13T14:56:00Z,17760,23160,25578,WP Access Experience,Anticorr-Keepcool,Gymlib,Imane Misrar
+225,Closed,Critical,2026-03-23T06:50:00Z,2026-03-23T09:23:12.426Z,2026-03-23T09:28:01.533Z,9192,9481,11750,Unassigned,,Smart Strength,Matthias Benkard
+224,Closed,Critical,2026-03-20T08:45:00Z,2026-03-20T09:39:00Z,2026-03-20T10:53:39.819Z,3240,7719,7839,WP Discovery | WP Access Experience | Users and Locations,Galaxy,Wellpass,Imane Misrar
+223,Closed,Non-Critical,2026-03-17T16:35:00Z,2026-03-17T17:07:43.379Z,2026-03-17T17:18:00.849Z,1963,2580,3006,Users and Locations,Upds,Branded Member App (BMA),Jean Mainguy
+222,Closed,Critical,2026-03-16T13:58:00Z,2026-03-16T14:40:00Z,2026-03-16T16:22:00Z,2520,8640,8640,XT,Activity-Library,Genius,Danny Janz
+221,Closed,Critical,2026-03-12T09:42:00Z,2026-03-13T08:43:00Z,2026-03-13T08:46:00Z,82860,83040,85891,WP Access Experience,Class-Booking-Backend,Wellpass,Imane Misrar
+220,Closed,Critical,2025-12-31T23:00:00Z,2026-03-11T15:40:56.802Z,2026-03-11T17:27:00Z,6021656,6028020,6538613,WP Company Growth,Gymfinder-backend,Wellpass,Jacob Lawton
+219,Closed,Critical,2026-03-06T23:30:00Z,2026-03-07T11:25:00Z,2026-03-07T11:51:00Z,42900,44460,144541,MSW,Relm,Smart Strength,Yvonne Hansen
+218,Closed,Critical,2026-02-10T21:45:00Z,2026-03-06T20:45:05.863Z,2026-03-06T20:57:12.788Z,2070005,2070732,2074546,Core Workouts,Advanced-Workouts,Branded Member App (BMA),Jean Mainguy
+217,Closed,Critical,2026-03-03T17:12:00Z,2026-03-03T17:20:00Z,2026-03-03T19:16:00Z,480,7440,10676,Users and Locations,Galaxy,Branded Member App (BMA),Roman Dziuba
+216,Closed,Critical,2026-03-03T09:52:00Z,2026-03-03T11:17:24.426Z,2026-03-03T11:26:17.339Z,5124,5657,6168,XT,Workout-Prediction,Genius,Jean Mainguy
+215,Closed,Critical,2026-02-11T04:48:00Z,,2026-02-11T11:51:05.7Z,,25385,27352,XT,Affected Service is missing in List! (Ping SRE),Branded Member App (BMA) | Wellpass,Jean Mainguy
+214,Closed,Critical,2026-02-09T18:53:00Z,2026-02-09T19:45:00Z,2026-02-09T20:10:00Z,3120,4620,4740,MSW | SRE,B2B Partner API | Cardio Test | Inbody Adapter | Partner API | Life Fitness Adapter,,Marty Küntzel
+213,Closed,Non-Critical,2026-01-25T15:49:18.964Z,2026-01-14T08:30:00Z,2026-01-15T08:00:00Z,,,,Trainer | BMA,GCP,,Kostiantyn Yahodzinskyi
+212,Closed,Critical,2026-01-23T14:27:00Z,2026-01-23T14:35:00Z,2026-01-23T15:13:00Z,480,2760,1320,WP Partner Integrations | WP Access Experience,Anticorr-Deciplus,,Mihai Popescu
+211,Closed,Critical,2026-01-14T16:29:00Z,2026-01-14T16:41:16.617Z,2026-01-14T16:48:51.461Z,736,1191,53893,Trainer | Core Workouts,Trainer-Task-Service,Trainer App,Oluwadamilare Jolayemi
+210,Closed,Non-Critical,2026-01-10T15:48:00Z,2026-01-12T11:07:09.341Z,2026-01-12T11:59:00Z,155949,159060,159114,WP Offer Acquisition | WP Discovery,Gymlib-Backend,Wellpass,Brandon Garcia Quezada
+209,Closed,Critical,2025-12-19T11:34:00Z,2025-12-19T11:52:00Z,2025-12-19T12:13:00Z,1080,2340,2852,Users and Locations | MSW,Upds,Fitness Hub | Smart Strength,Cem Freimoser
+206,Closed,Non-Critical,2025-11-19T10:20:00Z,2025-11-21T10:17:00Z,2025-11-28T16:37:00Z,172620,800220,800220,WP Access Experience,Class-Booking-Backend,Wellpass,Imane Misrar
+202,Closed,Critical,2025-11-14T09:38:00Z,2025-11-14T16:14:00Z,2025-11-14T16:14:00Z,23760,23760,23760,Trainer | XT,Affected Service is missing in List! (Ping SRE),,Jean Mainguy
+201,Closed,Non-Critical,2025-11-07T17:03:00Z,2025-11-09T18:03:00Z,2025-11-10T09:51:00Z,176400,233280,233280,WP Access Experience,Gymlib-Backend,,Cyril Bonnet
+200,Closed,Critical,2025-11-03T15:52:00Z,2025-11-03T19:50:00Z,2025-11-03T20:00:00Z,14280,14880,15300,WP Access Experience,Class-Booking-Backend,,Aleksandar Ristevski
+199,Closed,Critical,2025-11-05T04:25:00Z,2025-11-05T08:02:00Z,2025-11-05T08:02:00Z,13020,13020,13020,WP Offer Acquisition,Gymlib-Backend,,Alexandre Magniez-Papillon
+198,Closed,Critical,2025-10-24T15:25:00Z,2025-10-24T15:50:00Z,2025-10-24T15:55:00Z,1500,1800,1800,WP Access Experience,Class-Booking-Backend,,Aleksandar Ristevski
+197,Closed,Critical,2025-10-16T09:36:00Z,2025-10-16T10:03:20.38Z,2025-10-16T10:06:29.234Z,1640,1829,3463,SRE | Users and Locations,Server-Checkin,,Jean Mainguy
+196,Closed,Critical,2025-10-13T13:03:00Z,2025-10-13T13:37:43.887Z,2025-10-13T13:47:00Z,2083,2640,2640,Core Workouts | Trainer,Trainer-Task-Service,,Victor Ortega
+194,Closed,Critical,2025-09-16T10:00:00Z,2025-10-01T10:00:00Z,2025-10-08T14:11:00Z,1296000,1915860,1916100,WP Access Experience,Class-Booking-Backend,,Cyril Bonnet
+192,Closed,Critical,2024-12-10T13:27:00Z,2024-12-10T13:41:00Z,2024-12-10T18:17:00Z,840,17400,2160,WP Offer Acquisition,Qualitrain-User-Service,,Alexandre Magniez-Papillon
+191,Closed,Critical,2025-09-04T13:56:00Z,2025-09-05T07:33:32.484Z,2025-09-05T07:37:54.575Z,63452,63714,64051,WP Discovery | WP Access Experience,Qualitrain-Checkin-Service,,Imane Misrar
+190,Closed,Critical,2025-09-04T09:17:00Z,2025-09-04T09:25:00Z,2025-09-04T09:47:00Z,480,1800,1935,WP Access Experience,Class-Booking-Backend,,Kolawole Akinwande
+189,Closed,Non-Critical,2025-09-02T13:47:00Z,,,,,63900,XT,Affected Service is missing in List! (Ping SRE),,Jean Mainguy
+188,Closed,Non-Critical,2025-08-21T09:32:00Z,2025-08-22T15:47:00Z,2025-08-28T11:22:00Z,108900,611400,1121280,WP Access Experience,Anticorr-Mindbody | Anticorr-Zenoti | OneMMS Service | Anticorr Marianatek | Anticorr-Bsport | Class-Booking-Backend,,Raphael Silva Do Nascimento
+187,Closed,Non-Critical,2025-08-21T11:16:00Z,2025-08-22T13:42:00Z,2025-08-22T14:33:00Z,95160,98220,97380,WP Discovery | WP Company Growth,Affected Service is missing in List! (Ping SRE),,Amith Raravi
+186,Closed,Non-Critical,2025-08-11T13:16:00Z,2025-08-21T15:37:00Z,2025-08-21T16:13:00Z,872460,874620,874620,WP Company Growth,Qualitrain-User-Frontend,,Jacob Lawton
+183,Closed,Critical,2025-07-16T10:10:00Z,2025-07-16T10:15:00Z,2025-07-16T10:33:00Z,300,1380,2217,Core Workouts,Server-Monolith,,Victor Ortega
+179,Closed,Critical,2025-06-12T17:51:00Z,2025-06-12T17:55:00Z,2025-06-12T18:51:00Z,240,3600,5340,Users and Locations,GCP,,Viktor Kholod
+178,Closed,Critical,2025-06-11T06:10:00Z,2025-06-11T12:10:43.503Z,2025-06-11T16:30:00Z,10842,15598,15284,MSW,Partner-Gui,,Maximilian Kosch
+176,Closed,Critical,2025-06-04T07:57:54Z,2025-06-04T14:26:36.51Z,2025-06-04T15:02:05.57Z,23322,25451,26101,XT | BMA | Core Workouts,Server-Workout,Branded Member App (BMA),Jean Mainguy
+175,Closed,Critical,2025-05-22T15:20:00Z,2025-05-22T15:27:00Z,2025-05-22T15:37:00Z,420,1020,1908,WP Access Experience,Anticorr Eversports,,Raphael Silva Do Nascimento
+174,Closed,Critical,2025-05-20T09:57:00Z,2025-05-20T13:56:00Z,2025-05-20T14:48:00Z,14340,17460,17460,MSW,B2B Partner API,,Siddik Acil
+173,Closed,Critical,2025-05-13T17:36:00Z,2025-05-13T18:55:00Z,2025-05-13T19:33:13.043Z,4740,7033,6000,Users and Locations,Galaxy,,Serhii Hychka
+167,Closed,Critical,2025-04-16T08:28:00Z,2025-04-20T11:58:50.506Z,2025-04-16T11:58:00Z,358250,12600,359597,WP Access Experience,Gymlib-Backend,,Jacob Lawton
+166,Closed,Critical,2025-04-14T13:18:00Z,2025-04-14T13:29:00Z,2025-04-14T13:54:08.338Z,660,2168,2579,WP Access Experience | WP Discovery,Qualitrain-Api-Service | Galaxy,,Richard Ricciardelli
+162,Closed,Critical,2025-04-09T09:05:00Z,2025-04-09T09:05:00Z,2025-04-09T10:52:19.405Z,0,4671,4757,Digital-Operations,adm-int,,Aliaksandr Tsumarau
+161,Closed,Critical,2025-04-08T16:55:00Z,2025-04-08T17:55:00Z,2025-04-08T18:35:00Z,3600,6000,6540,Web,DNS,,Kolawole Akinwande
+157,Closed,Critical,2025-04-02T15:17:00Z,2025-04-02T15:30:00Z,2025-04-02T15:35:34.039Z,780,1114,8252,WP Access Experience,Qualitrain-Checkin-Service,,Aleksandar Ristevski
+155,Closed,Critical,2025-03-19T10:18:43.506Z,2025-03-19T11:16:10.522Z,2025-03-19T13:05:15.631Z,,,,Trainer,Trainer-Task-Service | Mobile-Trainer-API,,Achraf Ameddah
+154,Closed,Non-Critical,2025-03-07T15:42:00Z,2025-03-14T11:30:00Z,2025-03-14T12:10:00Z,589680,592080,593880,Core Workouts | WP Discovery,Virtual-Classes,,Tanya Gdulya
+151,Closed,Critical,2025-03-10T10:45:00Z,2025-03-10T10:50:00Z,2025-03-10T10:55:00Z,300,600,1264,WP Offer Acquisition | WP Access Experience | WP Discovery | WP Company Growth,Qualitrain-Checkin-Service,,Jacob Lawton
+150,Closed,Non-Critical,2025-03-04T08:43:00Z,2025-03-04T08:46:00Z,2025-03-04T08:57:00Z,180,840,900,WP Access Experience,Class-Booking-Backend,,Khaled Saidi
+149,Closed,Critical,2025-02-28T13:15:00Z,2025-02-28T13:22:00Z,2025-02-28T13:35:00Z,420,1200,3264,MMS-Connect,OneMMS Service,,Eldad Zack
+148,Closed,Critical,2025-02-24T09:45:00Z,2025-02-24T09:47:00Z,2025-02-24T10:02:00Z,120,1020,2700,MMS-Connect,OneMMS Service,,Pavel Kolmykov
+147,Closed,Critical,2025-02-21T09:26:00Z,2025-02-21T10:19:00Z,2025-02-21T11:06:00Z,3180,6000,12477,MMS-Connect,OneMMS Service,,Pavel Kolmykov
+146,Closed,Critical,2025-02-17T09:45:00Z,2025-02-18T10:40:04.284Z,2025-02-19T12:52:15.712Z,89704,184035,314640,Core Workouts | Users and Locations,Mobile-Api,,Viktor Kholod
+144,Closed,Critical,2025-01-30T12:00:00Z,2025-01-30T12:09:00Z,2025-01-30T12:37:00Z,540,2220,3034,WP Discovery | WP Company Growth | WP Offer Acquisition | WP Access Experience,Gymlib-Backend,,Freddy Stéphane Moussandja Nyembi
+142,Closed,Non-Critical,2025-01-13T08:23:00Z,2025-01-14T09:20:00Z,2025-01-24T16:30:00Z,89820,979620,979620,WP Company Growth,Gymlib-Backend,,Jacob Lawton
+141,Closed,Critical,2025-01-20T17:20:00Z,2025-01-20T18:17:47.082Z,2025-01-20T18:52:06.666Z,3467,5526,9900,Core Workouts,Galaxy,,Serhii Hychka
+140,Closed,Critical,2025-01-13T17:35:00Z,2025-01-13T18:30:00Z,2025-01-13T18:44:00Z,3300,4140,7980,XT | BMA | Users and Locations,Activity-Library,,Victor Ortega
+139,Closed,Critical,2025-01-07T10:45:00Z,2025-01-07T10:58:00Z,2025-01-07T11:04:13.591Z,780,1153,1800,WP Discovery | WP Company Growth | WP Offer Acquisition,Qualitrain-User-Service,,Jacob Lawton
+137,Closed,Critical,2024-11-21T06:23:00Z,2024-11-28T10:13:10.878Z,2024-11-28T17:36:00Z,618610,645180,645217,WP Company Growth,Qualitrain-User-Service,,Jacob Lawton
+136,Closed,Non-Critical,2024-11-21T08:38:00Z,2024-11-21T09:53:00Z,2024-11-25T16:10:00Z,4500,372720,372720,WP Company Growth,Qualitrain-User-Service,,Kolawole Akinwande
+135,Closed,Non-Critical,2024-11-05T17:24:00Z,2024-11-11T12:00:00Z,2024-11-11T12:30:00Z,498960,500760,500760,WP Offer Acquisition,Qualitrain-User-Service,,Dmytro Sholom
+134,Closed,Critical,2024-11-01T02:40:00Z,2024-11-01T12:09:00Z,2024-11-01T14:26:00Z,34140,42360,42360,MMS-Connect,Anticorr-Magicline | Upds,,Denys Bieltsov
+133,Closed,Critical,2024-11-04T09:24:13Z,2024-11-04T11:44:00Z,2024-11-04T12:21:30Z,8387,10637,16140,Core Workouts,Galaxy | Advanced-Workouts,,Serhii Hychka
+131,Closed,Non-Critical,2024-09-16T08:57:00Z,2024-09-16T13:48:00Z,2024-09-16T15:44:00Z,17460,24420,24420,WP Company Growth,Qualitrain-User-Service,,Kolawole Akinwande
+129,Closed,Critical,2024-09-18T15:37:00Z,2024-09-19T05:22:00Z,2024-09-19T06:23:41.434Z,49500,53201,54522,Digital-Operations,,,Matthias Benkard
+127,Closed,Non-Critical,2024-04-28T08:30:00Z,2024-09-04T14:42:00Z,2024-09-06T09:15:00Z,11167920,11321100,14797320,WP Company Growth,Qualitrain-User-Service,,Kolawole Akinwande
+125,Closed,Critical,2024-08-26T08:17:00Z,2024-08-26T08:57:00Z,2024-08-26T09:18:00Z,2400,3660,3884,WP Company Growth | WP Discovery,Gymfinder-backend,,Olaoye Enikanorogbon
+124,Closed,Critical,2024-08-14T07:55:00Z,2024-08-14T07:59:00Z,2024-08-14T08:23:01.556Z,240,1681,2135,Core Workouts,Galaxy,,Marty Küntzel
+123,Closed,Critical,2024-08-13T10:11:00Z,2024-08-13T10:35:00Z,2024-08-13T10:38:00Z,1440,1620,1980,WP Discovery,Qualitrain-Checkin-Service,,Amith Raravi
+122,Closed,Critical,2024-08-01T14:40:00Z,2024-08-02T07:09:00Z,2024-08-02T07:36:00Z,59340,60960,60960,WP Company Growth,Qualitrain-User-Frontend,,Saury Pande
+119,Closed,Critical,2024-06-18T13:55:00Z,2024-06-20T07:45:00Z,2024-06-20T12:15:00Z,150600,166800,166920,BMA | Core Workouts,Ingress-nginx-internal,,Kolawole Akinwande
+118,Closed,Critical,2024-05-13T15:22:00Z,2024-05-13T15:59:02Z,2024-05-13T15:58:38Z,2222,2198,4480,MSW,Machine-Training,,Cem Freimoser
+116,Closed,Critical,2024-05-08T09:45:00Z,2024-05-13T09:53:54.558Z,2024-05-13T09:57:36.49Z,432534,432756,433485,XT | Users and Locations,Server-Workout,,Jean Mainguy
+115,Closed,Critical,2024-04-29T09:20:00Z,2024-04-29T13:41:00Z,2024-04-29T13:44:00Z,15660,15840,20068,WP Access Experience,Pulsar,,Pedro Rosa
+114,Closed,Critical,2024-04-24T08:13:00Z,2024-04-24T08:35:00Z,2024-04-24T08:52:00Z,1320,2340,3120,Digital-Operations | MI | SRE | MSW,adm-int,,Siddik Acil
+113,Closed,Critical,2024-04-11T16:00:00Z,2024-04-11T16:39:57.339Z,2024-04-11T17:20:00Z,2397,4800,6768,Core Workouts,Galaxy,,Eldad Zack
+112,Closed,Critical,2024-04-10T19:34:00Z,2024-04-10T19:50:00Z,2024-04-10T23:04:00Z,960,12600,80280,Core Workouts,Galaxy,,Serhii Hychka
+108,Closed,Critical,2024-03-20T11:31:00Z,2024-03-20T12:21:37.673Z,2024-03-20T12:34:00Z,3037,3780,3982,Users and Locations,Activity-Library,,Marty Küntzel
+107,Closed,Critical,2024-03-15T21:45:00Z,2024-03-18T08:37:00Z,2024-03-18T09:29:00Z,211920,215040,229020,WP Discovery,Affected Service is missing in List! (Ping SRE),,Eric Luong
+106,Closed,Critical,2024-03-12T12:20:00Z,2024-03-12T12:52:00Z,2024-03-12T12:57:00Z,1920,2220,2220,MSW | XT,User-Journey,,Panshul Gupta
+104,Closed,Critical,2024-01-08T16:59:00Z,2024-01-08T17:24:03.085Z,2024-01-08T18:38:09.941Z,1503,5949,6316,Users and Locations,Upds,,Victor Ortega
+103,Closed,Critical,2024-01-01T18:40:00Z,2024-01-01T19:10:00Z,2024-01-01T19:54:32.147Z,1800,4472,14786,Core Workouts,Galaxy,,Roman Dziuba
+102,Closed,Critical,2023-12-27T16:10:00Z,2023-12-27T16:50:00Z,2023-12-27T17:05:00Z,2400,3300,3600,SRE | Core Workouts,Galaxy,,Roman Dziuba
+101,Closed,Critical,2023-12-26T09:50:00Z,2023-12-26T10:26:00Z,2023-12-26T12:16:00Z,2160,8760,10740,Users and Locations | SRE,Upds,,Jean Mainguy
+100,Closed,Critical,2023-12-15T02:24:00Z,2023-12-15T09:04:00Z,2023-12-15T07:24:00Z,24000,18000,18000,BMA | SRE,AWS,,Viktor Kholod
+99,Closed,Critical,2023-12-19T08:37:00Z,2023-12-19T08:57:00Z,2023-12-19T08:59:00Z,1200,1320,1573,Users and Locations | MSW,Server-Monolith,,Akram Moussa
+91,Closed,Critical,2023-11-30T07:07:00Z,2023-11-30T07:56:00Z,2023-11-30T08:00:00Z,2940,3180,4653,MI,Affected Service is missing in List! (Ping SRE),,Matthias Benkard
+90,Closed,Critical,2023-11-22T10:54:00Z,2023-11-22T13:44:00Z,2023-11-22T14:01:25.458Z,10200,11245,11486,WP Company Growth | Users and Locations | WP Discovery,Mandrill,,Jacob Lawton
+89,Closed,Critical,2023-11-21T09:45:00Z,2023-11-21T09:56:22Z,2023-11-21T10:19:00Z,682,2040,3104,WP Discovery,Gymlib-Backend,,Beatrix Vad
+88,Closed,Critical,2023-11-14T13:00:00Z,2023-11-14T13:00:00Z,2023-11-14T14:30:00Z,0,5400,5760,WP Access Experience,Gymlib-Backend,,Beatrix Vad
+86,Closed,Critical,2023-10-27T11:10:00Z,2023-10-30T12:00:00Z,2023-10-30T14:00:00Z,262200,269400,269400,MI,Relm,,Ben Ammann
+85,Closed,Critical,2023-11-02T10:15:30Z,2023-11-02T10:31:30.16Z,2023-11-02T10:50:22.274Z,960,2092,6555,Core Workouts,Galaxy,,Viktor Kholod
+84,Closed,Critical,2023-10-27T00:07:42Z,2023-10-27T04:44:56Z,2023-10-27T06:08:38Z,16634,21656,21656,Core Workouts,Galaxy,,Viktor Kholod
+82,Closed,Critical,2023-10-06T12:55:00Z,2023-10-06T12:55:00Z,2023-10-06T14:30:09Z,0,5709,8238,BMA,Galaxy,,Kolawole Akinwande
+81,Closed,Critical,2023-10-05T22:55:00Z,2023-10-06T11:52:15.013Z,2023-10-07T10:41:29.117Z,46635,128789,374326,MMS-Connect,Anticorr-Magicline,,Wassim Benzarti
+80,Closed,Critical,2023-09-29T13:59:00Z,2023-09-29T15:30:00Z,2023-09-29T18:19:14.191Z,5460,15614,25112,BMA,Galaxy,,Viktor Kholod
+79,Closed,Critical,2023-09-26T16:00:32Z,2023-09-26T16:10:43Z,2023-09-26T16:49:16.665Z,611,2924,4906,Core Workouts,Galaxy,,Serhii Hychka
+78,Closed,Critical,2023-09-25T15:00:00Z,2023-09-25T15:40:00Z,2023-09-25T15:40:00Z,2400,2400,5707,Core Workouts,Galaxy,,Serhii Hychka
+77,Closed,Critical,2023-09-18T09:14:00Z,2023-09-21T07:28:00Z,2023-09-18T11:42:00Z,252840,8880,268260,MSW,Affected Service is missing in List! (Ping SRE),,Ingeborg Becht
+76,Closed,Critical,2023-05-31T22:00:00Z,2023-09-19T14:00:00Z,2023-09-20T14:20:00Z,9561600,9649200,9649200,WP Company Growth,Affected Service is missing in List! (Ping SRE),,Beatrix Vad
+75,Closed,Critical,2023-09-19T10:38:00Z,2023-09-19T10:39:00Z,2023-09-19T10:54:00Z,60,960,960,MSW,Machine-Training,,Zongrong Li
+74,Closed,Critical,2023-09-15T11:05:30Z,2023-09-15T11:18:20Z,2023-09-15T11:46:36.191Z,770,2466,3030,Trainer | Users and Locations | Core Workouts,Activity-Library,,Galen Abell
+72,Closed,Critical,2023-08-17T06:44:16Z,2023-08-17T09:21:02Z,2023-08-17T08:52:13Z,9406,7677,7709,MMS-Connect,Anticorr-Magicline,,Kolawole Akinwande
+71,Closed,Critical,2023-08-09T13:28:40Z,2023-08-09T13:33:00Z,2023-08-09T13:36:30Z,260,470,3380,Core Workouts | Users and Locations | Trainer | BMA | MSW,Measurements,,Wassim Benzarti
+70,Closed,Critical,2023-08-07T09:00:00Z,2023-08-07T11:39:25.429Z,2023-08-07T12:42:12.701Z,9565,13332,18594,BMA,Affected Service is missing in List! (Ping SRE),,Oleksandr Kardash
+69,Closed,Critical,2023-07-24T11:33:00Z,2023-07-24T12:27:32.734Z,2023-07-24T12:15:00Z,3272,2520,6778,Users and Locations,Upds,,Eldad Zack
+68,Closed,Critical,2023-07-17T06:55:05Z,2023-07-17T14:15:08.464Z,2023-07-17T14:19:52.033Z,26403,26687,27706,WP Discovery | WP Company Growth,Mandrill,,Aleksandar Ristevski
+67,Closed,Critical,2023-06-16T10:30:00Z,2023-06-16T12:03:59.627Z,2023-06-16T13:44:11.026Z,5639,11651,11990,Users and Locations | MSW,Upds,,Marty Küntzel
+66,Closed,Critical,2023-05-31T13:57:46.627Z,2023-05-31T14:33:31.098Z,2023-05-31T15:08:02.068Z,,,,Web,Affected Service is missing in List! (Ping SRE),,Jean Mainguy
+65,Closed,Critical,2023-05-26T13:12:00Z,2023-05-26T13:49:34.548Z,2023-05-26T18:12:00Z,2254,18000,19511,Users and Locations,Upds,,Akram Moussa
+64,Closed,Critical,2023-05-04T10:51:00Z,2023-05-04T14:39:07Z,2023-05-04T14:45:04.559Z,13687,14044,14846,WP Discovery | WP Company Growth | Users and Locations,Mandrill,,Jacob Lawton
+62,Closed,Critical,2023-05-04T11:28:00Z,2023-05-04T12:09:42.231Z,2023-05-04T12:29:10.554Z,2502,3670,5312,WP Company Growth | WP Discovery,Qualitrain-Api-Service,,Pavlo Rospopa
+61,Closed,Critical,2023-04-27T15:21:00Z,2023-04-27T15:58:23Z,2023-04-27T16:02:22.463Z,2243,2482,3217,Core Workouts | BMA,Galaxy,,Jean Mainguy
+60,Closed,Critical,2023-04-25T04:00:00Z,2023-04-25T11:45:07Z,2023-04-25T12:25:00Z,27907,30300,31296,MSW,Affected Service is missing in List! (Ping SRE),,Siddik Acil
+59,Closed,Critical,2023-04-24T14:37:45Z,2023-04-24T15:06:19.023Z,2023-04-24T15:17:04.888Z,1714,2359,3358,Trainer,PDF-Service,,Jean Mainguy
+58,Closed,Critical,2023-04-12T13:30:00Z,2023-04-13T11:15:00Z,2023-04-13T11:30:00Z,78300,79200,82080,Core Workouts | MSW,Measurements,,Panshul Gupta
+56,Closed,Critical,2023-04-05T11:35:00Z,2023-04-05T11:42:00Z,2023-04-05T11:58:00Z,420,1380,1500,Users and Locations,Server-Monolith,,Eldad Zack
+53,Closed,Critical,2023-03-09T08:32:32Z,2023-03-09T15:27:09.199Z,2023-03-10T04:26:30Z,24877,71638,111005,Users and Locations | BMA | WP Discovery,Galaxy,,Viktor Kholod
+44,Closed,Critical,2023-02-02T12:48:00Z,2023-02-02T13:50:06.18Z,2023-02-02T13:50:17.299Z,3726,3737,10583,WP Discovery | Core Workouts | BMA | SRE | Web,Galaxy,,Jean Mainguy
+43,Closed,Critical,2022-12-16T08:23:00Z,2022-12-16T11:30:19Z,2022-12-16T11:35:52Z,11239,11572,12260,MSW,Partner-Gui,,Ben Ammann
+42,Closed,Critical,2022-10-18T14:45:00Z,2022-10-18T15:18:42.261Z,2022-10-18T15:32:28.83Z,2022,2848,5062,Users and Locations | Core Workouts | BMA,Activity-Library | Advanced-Workouts,,Viktor Kholod
+41,Closed,Critical,2022-10-05T06:42:00Z,2022-10-05T07:42:33.519Z,2022-10-05T07:50:56.177Z,3633,4136,4398,MSW,Device-Gateway,,Marty Küntzel
+40,Closed,Critical,2022-09-08T04:13:00Z,2022-09-08T13:20:33.038Z,2022-09-08T13:29:18.341Z,32853,33378,33881,SRE,Affected Service is missing in List! (Ping SRE),,Jean Mainguy
+39,Closed,Critical,2022-08-26T08:43:00Z,2022-08-26T09:04:00Z,2022-08-26T09:04:00Z,1260,1260,1380,Users and Locations | MSW,Server-Monolith,,Marty Küntzel
+37,Closed,Critical,2022-08-23T08:33:00Z,2022-08-23T09:25:34.329Z,2022-08-23T09:28:34.863Z,3154,3334,3904,Trainer,Trainer-Task-Service,,Maura Borean
+36,Closed,Critical,2022-08-19T12:09:12Z,2022-08-19T12:45:05.127Z,2022-08-19T12:51:09.724Z,2153,2517,3230,BMA | Users and Locations | Core Workouts,Server-Workout,,Jean Mainguy
+35,Closed,Critical,2022-08-02T12:40:00Z,2022-08-02T14:20:48.214Z,2022-08-02T15:01:25.561Z,6048,8485,9208,WP Company Growth,Qualitrain-Api-Service,,Jacob Lawton
+34,Closed,Critical,2022-07-12T05:56:00Z,2022-07-12T07:56:18Z,2022-07-12T11:30:49.64Z,7218,20089,111260,Core Workouts | BMA | Users and Locations,Server-Monolith | Upds | Galaxy,,Viktor Kholod
+33,Closed,Critical,2022-06-29T14:59:00Z,2022-06-29T15:26:44Z,2022-06-29T16:08:10.124Z,1664,4150,95355,Core Workouts,Advanced-Workouts,,Yahodzinskyi Konstantin
+32,Closed,Critical,2022-06-27T14:30:00Z,2022-06-27T15:42:53.729Z,2022-06-27T15:51:09.32Z,4373,4869,5298,MSW | Users and Locations,Machine-Backend,,Cem Freimoser
+30,Closed,Critical,2022-06-27T09:44:00Z,2022-06-27T10:20:00Z,2022-06-27T10:25:00Z,2160,2460,3660,Users and Locations | SRE,Server-Gyms,,Cem Freimoser

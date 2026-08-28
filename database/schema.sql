@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS raw_incidents (
- incident_id INTEGER PRIMARY KEY,
+ incident_id VARCHAR(100) PRIMARY KEY,
  realm VARCHAR(50),
  status VARCHAR(50),
  severity VARCHAR(50),
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS deployments (
 );
 
 CREATE TABLE IF NOT EXISTS calculated_dora_metrics (
- incident_id INTEGER PRIMARY KEY,
+ incident_id VARCHAR(100) PRIMARY KEY,
  month_year VARCHAR(10),
  mttd_hours REAL,
  mttr_hours REAL,

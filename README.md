@@ -1,28 +1,35 @@
-# DORA Metrics Solution
+# EGYM DORA Metrics Dashboard & Automated Pipeline
 
-Automated DORA (DevOps Research and Assessment) metrics ingestion, analysis, and reporting pipeline.
+An end-to-end, dynamic DORA metrics ingestion, wrangling, and publishing pipeline. This system pulls deployment telemetry from Jira and GitHub SRE Inventory, pairs it with Incident.io severity and duration tracking, and dynamically generates HTML dashboards aggregated across all organizational realms.
 
-**Architecture**
-* **`ingestion/`**: Fetches deployments from GitHub (`github_fetcher.py`), incidents (`incident_fetcher.py`), and Jira releases (`jira_fetcher.py`).
-* **`wrangling/`**: Calculates Deployment Frequency (DF), Change Failure Rate (CFR), MTTD, and MTTR (`df_cfr_engine.py`, `mttd_mttr_engine.py`).
-* **`publisher/`**: Generates interactive HTML dashboards (`site_generator.py`).
-* **`docs/`**: Output directory deployed to GitHub Pages.
-* **`.github/workflows/`**: CI/CD automation (`dora_monthly_pipeline.yml`).
+---
 
-**Environment Setup**
-Create a local `.env` file in the project root:
+## 🏗️ Architecture & Directory Structure
 
-```env
-SERVICE_INVENTORY_URL=https://your-internal-inventory-url/api/services
-SERVICE_INVENTORY_TOKEN=your_inventory_token
-JIRA_URL=[https://your-domain.atlassian.net](https://your-domain.atlassian.net)
-JIRA_USER_EMAIL=your_email@company.com
-JIRA_API_KEY=your_jira_api_key
-INCIDENT_IO_API_KEY=your_incident_io_api_key
-SLACK_WEBHOOK_URL_ENGINEERING=your_slack_webhook_url_1
-SLACK_WEBHOOK_URL_EXECUTIVE=your_slack_webhook_url_2
-**Local Setup & Execution**
-
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+```text
+DORA-Metrics/
+├── .github/workflows/       # Automated GitHub Actions monthly pipeline
+│   └── dora_monthly_pipeline.yml
+├── database/                # SQLite storage and seeding scripts
+│   ├── dora_metrics.db      # Consolidated local SQLite database
+│   ├── init_db.py           # Schema initialization script
+│   ├── schema.sql           # Database tables & views schema
+│   └── seed_from_sheet.py   # Google Sheet registry ingestion (gid=0, Jira, GitHub)
+├── docs/                    # Output directory for generated HTML dashboards (GitHub Pages)
+│   ├── index.html           # Central landing page with dynamic realm cards
+│   └── *-dashboard.html     # Realm-specific DORA dashboards
+├── ingestion/               # Raw telemetry fetchers
+│   ├── github_fetcher.py    # SRE Service Inventory deployment fetcher
+│   ├── incident_fetcher.py  # Incident.io ticket & multi-realm duplication engine
+│   └── jira_fetcher.py      # Jira release issue fetcher (dynamic JQL)
+├── publisher/               # Dashboard generator & templates
+│   ├── landing_template.html
+│   ├── realm_dashboard_template.html
+│   └── site_generator.py    # HTML site publisher & optional Slack notifier
+├── wrangling/               # Metric aggregation engines
+│   ├── df_cfr_engine.py     # Deployment Frequency & Change Failure Rate engine
+│   └── mttd_mttr_engine.py  # Mean/Median MTTD & MTTR duration engine
+├── .env                     # Local environment variables & secrets (git-ignored)
+├── config.yaml              # Centralized operational configuration
+├── README.md                # System documentation
+└── requirements.txt         # Python dependency manifest

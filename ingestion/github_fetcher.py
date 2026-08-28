@@ -1,123 +1,97 @@
 import os
-import json
 import sqlite3
-from datetime import datetime
 import requests
+from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 
 load_dotenv()
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-GITHUB_ORG = os.getenv("GITHUB_ORG")
+# Environment credentials & endpoints
 SERVICE_INVENTORY_URL = os.getenv("SERVICE_INVENTORY_URL")
-SERVICE_INVENTORY_TOKEN = os.getenv("SERVICE_INVENTORY_TOKEN")
+SERVICE_INVENTORY_API_KEY = os.getenv("SERVICE_INVENTORY_API_KEY")
 DB_PATH = os.path.join("database", "dora_metrics.db")
-MOCK_FILE_PATH = os.path.join("database", "mock_inventory.json")
 
-def parse_iso_timestamp(ts_str):
-    if not ts_str:
-        return None
-    try:
-        cleaned_str = ts_str.replace("Z", "+00:00")
-        dt = datetime.fromisoformat(cleaned_str)
-        return dt.strftime("%Y-%m-%d %H:%M:%S")
-    except ValueError:
-        return None
-
-def fetch_service_inventory():
-    """Fetches valid services from live API, local mock file, or skips validation."""
-    # Priority 1: Live Internal API (if configured in local .env)
-    if SERVICE_INVENTORY_URL and SERVICE_INVENTORY_TOKEN:
-        print("Checking Live Service Inventory API...")
-        try:
-            headers = {"Authorization": f"Bearer {SERVICE_INVENTORY_TOKEN}", "Accept": "application/json"}
-            res = requests.get(SERVICE_INVENTORY_URL, headers=headers, timeout=5)
-            res.raise_for_status()
-            data = res.json()
-            return {item["name"]: {"team_name": item.get("team"), "realm_name": item.get("realm")} for item in data if item.get("name")}
-        except Exception as e:
-            print(f"Notice: Service Inventory API unreachable ({e}).")
-
-    # Priority 2: Local Git-Ignored Mock File (for local dev testing)
-    if os.path.exists(MOCK_FILE_PATH):
-        print("Loading service validation from local database/mock_inventory.json...")
-        with open(MOCK_FILE_PATH, "r") as f:
-            data = json.load(f)
-            return {item["name"]: {"team_name": item.get("team"), "realm_name": item.get("realm")} for item in data if item.get("name")}
-
-    # Priority 3: Cloud CI/CD Default (Skip catalog filtering safely)
-    print("Notice: No Service Inventory endpoint or mock file configured. Proceeding without catalog filtering.")
-    return None
-
-def register_service(cursor, service_name, team_name=None, realm_name=None):
+def get_mapping_from_registry(cursor, service_name):
+    """Queries service_realm_registry for pre-populated team/realm mapping."""
     cursor.execute("""
-        INSERT OR REPLACE INTO service_realm_registry (service_name, team_name, realm_name, source_type)
-        VALUES (?, ?, ?, 'github')
-    """, (service_name, team_name, realm_name))
+        SELECT team_name, realm_name 
+        FROM service_realm_registry 
+        WHERE service_name = ?
+    """, (service_name,))
+    row = cursor.fetchone()
+    if row:
+        return row[0] or "Unassigned", row[1] or "Unassigned"
+    return "Unassigned", "Unassigned"
 
-def insert_deployment(cursor, deployment_data):
-    cursor.execute("""
-        INSERT OR REPLACE INTO deployments (
-            deployment_id, service_name, realm_name, team_name, source, status, deployed_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, deployment_data)
+def fetch_and_store_sre_deployments(days=28):
+    """Fetches production deployment data from SRE Service Inventory API and maps team/realm dynamically."""
+    if not SERVICE_INVENTORY_URL or not SERVICE_INVENTORY_API_KEY:
+        print("Error: SERVICE_INVENTORY_URL or SERVICE_INVENTORY_API_KEY is missing from environment.")
+        return
 
-def fetch_and_store_github_deployments():
-    print("Scanning GitHub org repos and deployment events...")
+    # Sanitize base URL to handle trailing slashes safely
+    base_url = SERVICE_INVENTORY_URL.rstrip('/')
+    endpoint_url = f"{base_url}/api/deployments/recent/{days}"
+    print(f"Fetching SRE deployment metrics for the past {days} days from endpoint...")
+
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     try:
-        if not GITHUB_TOKEN or not GITHUB_ORG:
-            print("Notice: GITHUB_TOKEN or GITHUB_ORG missing in environment. Table insertion & auto-discovery logic are ready.")
+        # HTTP Basic Auth using 'githubactions' as username
+        auth = HTTPBasicAuth("natasha.baisiwala", SERVICE_INVENTORY_API_KEY)
+        res = requests.get(endpoint_url, auth=auth, timeout=30)
+        
+        if res.status_code != 200:
+            print(f"Error fetching SRE deployments (HTTP {res.status_code}):")
+            print(res.text[:300])
             return
 
-        inventory = fetch_service_inventory()
+        try:
+            raw_deployments = res.json()
+        except Exception:
+            print("Error: SRE endpoint returned non-JSON content:")
+            print(res.text[:300])
+            return
+        total_processed = 0
+        for item in raw_deployments:
+            # 1. Apply SRE Filters: production only and completed (endTime not null)
+            if item.get("environment") != "production" or not item.get("endTime"):
+                continue
 
-        headers = {
-            "Authorization": f"Bearer {GITHUB_TOKEN}",
-            "Accept": "application/vnd.github.v3+json"
-        }
+            service_name = item.get("service")
+            if not service_name:
+                continue
 
-        repos_url = f"https://api.github.com/orgs/{GITHUB_ORG}/repos"
-        res = requests.get(repos_url, headers=headers)
-        res.raise_for_status()
-        repos = res.json()
+            # 2. Extract ISO Date (YYYY-MM-DD) from endTime
+            deployed_at = item.get("endTime")[:10]
 
-        total_deployments = 0
-        for repo in repos:
-            repo_name = repo.get("name")
-            team_name = None
-            realm_name = None
+            # 3. Evaluate Rollout Success / Failure
+            is_rollback = item.get("rollback", False)
+            status = "failure" if is_rollback else "success"
 
-            if inventory is not None:
-                if repo_name not in inventory:
-                    print(f"Skipping repository '{repo_name}': Not listed in Service Inventory.")
-                    continue
-                team_name = inventory[repo_name].get("team_name")
-                realm_name = inventory[repo_name].get("realm_name")
+            # 4. Dynamic Lookup for Team & Realm mapping from registry
+            team_name, realm_name = get_mapping_from_registry(cursor, service_name)
 
-            register_service(cursor, repo_name, team_name, realm_name)
+            # Unique ID key to prevent duplicates
+            deployment_id = f"sre_{service_name}_{item.get('endTime')}"
 
-            deploy_url = f"https://api.github.com/repos/{GITHUB_ORG}/{repo_name}/deployments"
-            d_res = requests.get(deploy_url, headers=headers)
-            if d_res.status_code == 200:
-                deployments = d_res.json()
-                for d in deployments:
-                    dep_id = f"gh_{d.get('id')}"
-                    created_at = parse_iso_timestamp(d.get("created_at"))
-                    
-                    payload = (dep_id, repo_name, realm_name, team_name, "github", "success", created_at)
-                    insert_deployment(cursor, payload)
-                    total_deployments += 1
+            # Insert into SQLite deployments table with mapped Team & Realm
+            cursor.execute("""
+                INSERT OR REPLACE INTO deployments (
+                    deployment_id, service_name, realm_name, team_name, source, status, deployed_at
+                ) VALUES (?, ?, ?, ?, 'github', ?, ?)
+            """, (deployment_id, service_name, realm_name, team_name, status, deployed_at))
 
-        print(f"Successfully processed {total_deployments} GitHub deployments.")
+            total_processed += 1
+
+        print(f"Successfully ingested {total_processed} production deployments.")
 
     except Exception as e:
-        print(f"Error fetching GitHub deployments: {e}")
+        print(f"Error fetching SRE deployments: {e}")
     finally:
         conn.commit()
         conn.close()
 
 if __name__ == "__main__":
-    fetch_and_store_github_deployments()
+    fetch_and_store_sre_deployments(days=28)
