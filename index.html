@@ -1,0 +1,129 @@
+def generate_landing_page(realm_meta, latest_month_str):
+    print("Generating Master Landing Page (index.html)...")
+    landing_template = load_template("landing_template.html")
+
+    flow_cards_html = ""
+    incident_cards_html = ""
+    cfr_cards_html = ""
+
+    for realm_name, cfg in realm_meta.items():
+        # SECTION 1: FLOW METRICS
+        # Points directly to your colleague's existing directory structure (e.g. apps/index.html)
+        flow_cards_html += f'''
+        <a href="{cfg['slug']}/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 2: DORA INCIDENTS (PART 1)
+        # Points strictly to your generated public/ files (e.g. public/apps.html)
+        incident_cards_html += f'''
+        <a href="public/{cfg['slug']}.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 3: DORA CFR (PART 2)
+        # Points strictly to your generated public/ CFR files (e.g. public/apps-cfr-dashboard.html)
+        if cfg["cfr"]:
+            cfr_cards_html += f'''
+            <a href="public/{cfg['slug']}-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+                <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>'''
+
+    landing_html = landing_template.replace("
+        <a href="machines-realm-ii---msw-and-fh/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm II - MSW & FH</h3>
+            <p class="text-sm text-slate-400 mt-2">6 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="core/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">⚙️ Core</h3>
+            <p class="text-sm text-slate-400 mt-2">9 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="machines-realm-i---osandfw/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm I - OS&FW</h3>
+            <p class="text-sm text-slate-400 mt-2">2 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="wellpass/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">💚 Wellpass</h3>
+            <p class="text-sm text-slate-400 mt-2">11 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="realm-support-services/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🛠️ Realm Support Services</h3>
+            <p class="text-sm text-slate-400 mt-2">1 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="apps/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">📱 Apps</h3>
+            <p class="text-sm text-slate-400 mt-2">8 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>", flow_cards_html)
+    landing_html = landing_html.replace("
+        <a href="public/machines-realm-ii---msw-and-fh.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm II - MSW & FH</h3>
+            <p class="text-sm text-slate-400 mt-2">6 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/core.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">⚙️ Core</h3>
+            <p class="text-sm text-slate-400 mt-2">9 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/machines-realm-i---osandfw.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm I - OS&FW</h3>
+            <p class="text-sm text-slate-400 mt-2">2 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/wellpass.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">💚 Wellpass</h3>
+            <p class="text-sm text-slate-400 mt-2">11 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/realm-support-services.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🛠️ Realm Support Services</h3>
+            <p class="text-sm text-slate-400 mt-2">1 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/apps.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">📱 Apps</h3>
+            <p class="text-sm text-slate-400 mt-2">8 teams · Latest: Aug 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>", incident_cards_html)
+    landing_html = landing_html.replace("
+            <a href="public/machines-realm-ii---msw-and-fh-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm II - MSW & FH</h3>
+                <p class="text-sm text-slate-400 mt-2">6 teams · Latest: Aug 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/core-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">⚙️ Core</h3>
+                <p class="text-sm text-slate-400 mt-2">9 teams · Latest: Aug 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/machines-realm-i---osandfw-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm I - OS&FW</h3>
+                <p class="text-sm text-slate-400 mt-2">2 teams · Latest: Aug 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/wellpass-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">💚 Wellpass</h3>
+                <p class="text-sm text-slate-400 mt-2">11 teams · Latest: Aug 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/apps-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">📱 Apps</h3>
+                <p class="text-sm text-slate-400 mt-2">8 teams · Latest: Aug 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>", cfr_cards_html)
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(landing_html)
+    print("Master Landing Page index.html Generated Successfully!")

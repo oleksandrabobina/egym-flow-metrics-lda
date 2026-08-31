@@ -1,4 +1,5 @@
 import os
+import csv
 import sqlite3
 import requests
 from requests.auth import HTTPBasicAuth
@@ -7,13 +8,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Credentials and Jira Domain setup from environment variables
-raw_url = os.getenv("JIRA_URL") or os.getenv("JIRA_DOMAIN") or "egym.atlassian.net"
-JIRA_DOMAIN = raw_url.replace("https://", "").replace("http://", "").strip("/")
-JIRA_EMAIL = os.getenv("JIRA_USER_EMAIL") or os.getenv("JIRA_EMAIL")
-JIRA_API_TOKEN = os.getenv("JIRA_API_KEY") or os.getenv("JIRA_API_TOKEN")
+# Environment credentials & endpoints
+raw_url = os.getenv("JIRA_URL")
+JIRA_DOMAIN = raw_url.replace("https://", "").replace("http://", "").strip("/") if raw_url else None
+JIRA_EMAIL = os.getenv("JIRA_USER_EMAIL")
+JIRA_API_TOKEN = os.getenv("JIRA_API_KEY")
+MAPPING_WEB_APP_URL = os.getenv("MAPPING_WEB_APP_URL")
+MAPPING_TAB_GID = os.getenv("MAPPING_TAB_GID")
 
 DB_PATH = os.path.join("database", "dora_metrics.db")
+EXPORT_CSV_PATH = "inspected_jira_releases.csv"
 
 def parse_iso_timestamp(ts_str):
     """Parses Jira resolution date string into ISO format (YYYY-MM-DD)."""
@@ -26,63 +30,89 @@ def parse_iso_timestamp(ts_str):
     except ValueError:
         return ts_str[:10] if ts_str else None
 
-def get_registered_jira_projects(cursor):
-    """Dynamically fetches distinct Jira project keys stored in the registry database."""
+def init_raw_jira_table(cursor):
+    """Ensures raw Jira storage table exists with exact original column names."""
     cursor.execute("""
-        SELECT DISTINCT service_name 
-        FROM service_realm_registry 
-        WHERE source_type = 'jira' AND service_name IS NOT NULL
+        CREATE TABLE IF NOT EXISTS jira_releases_raw (
+            "Issue Type" TEXT,
+            "Issue key" TEXT PRIMARY KEY,
+            "Issue id" TEXT,
+            "Summary" TEXT,
+            "Status" TEXT,
+            "Components" TEXT,
+            "Resolved" TEXT
+        )
     """)
-    rows = cursor.fetchall()
-    return [row[0].strip() for row in rows if row[0] and row[0].strip()]
 
-def get_mapping_from_registry(cursor, identifier, fallback_identifier=None):
-    """Looks up team and realm mapping for a component or project key from SQLite."""
+def fetch_jira_project_keys_from_mapping():
+    """Fetches active Jira project keys directly from MAPPING_WEB_APP_URL using configured GID."""
+    if not MAPPING_WEB_APP_URL or not MAPPING_TAB_GID:
+        print("Error: MAPPING_WEB_APP_URL or MAPPING_TAB_GID is missing in environment variables.")
+        return []
+
+    try:
+        separator = "&" if "?" in MAPPING_WEB_APP_URL else "?"
+        target_url = f"{MAPPING_WEB_APP_URL}{separator}gid={MAPPING_TAB_GID}"
+        
+        res = requests.get(target_url, timeout=30)
+        res.raise_for_status()
+        mapping_data = res.json()
+        
+        project_keys = set()
+        
+        if isinstance(mapping_data, list):
+            for row in mapping_data:
+                if isinstance(row, dict):
+                    key = row.get("Jira Key") or row.get("Jira key") or row.get("jira_key") or row.get("JiraKey") or row.get("Project Key")
+                    if key and str(key).strip():
+                        project_keys.add(str(key).strip())
+
+        return list(project_keys)
+
+    except Exception as e:
+        print(f"Error fetching Jira project keys from MAPPING_WEB_APP_URL: {e}")
+        return []
+
+def insert_raw_jira_release(cursor, raw_data):
+    """Inserts or replaces raw Jira release record in jira_releases_raw table."""
     cursor.execute("""
-        SELECT team_name, realm_name 
-        FROM service_realm_registry 
-        WHERE service_name = ?
-    """, (identifier,))
-    row = cursor.fetchone()
-    if row:
-        return row[0], row[1]
-
-    if fallback_identifier and fallback_identifier != identifier:
-        cursor.execute("""
-            SELECT team_name, realm_name 
-            FROM service_realm_registry 
-            WHERE service_name = ?
-        """, (fallback_identifier,))
-        row = cursor.fetchone()
-        if row:
-            return row[0], row[1]
-
-    return "Unassigned", "Unassigned"
-
-def insert_deployment(cursor, deployment_data):
-    """Inserts transformed Jira release record into deployments table."""
-    cursor.execute("""
-        INSERT OR REPLACE INTO deployments (
-            deployment_id, service_name, realm_name, team_name, source, status, deployed_at
+        INSERT OR REPLACE INTO jira_releases_raw (
+            "Issue Type", "Issue key", "Issue id", "Summary", "Status", "Components", "Resolved"
         ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, deployment_data)
+    """, raw_data)
+
+def export_jira_releases_to_csv(cursor):
+    """Exports all records from jira_releases_raw to a root CSV file for reconciliation."""
+    cursor.execute('SELECT "Issue Type", "Issue key", "Issue id", "Summary", "Status", "Components", "Resolved" FROM jira_releases_raw')
+    rows = cursor.fetchall()
+    
+    headers = ["Issue Type", "Issue key", "Issue id", "Summary", "Status", "Components", "Resolved"]
+    
+    with open(EXPORT_CSV_PATH, mode="w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(headers)
+        writer.writerows(rows)
+        
+    print(f"Exported {len(rows)} records to {EXPORT_CSV_PATH} for reconciliation!")
 
 def fetch_and_store_jira_releases():
-    if not JIRA_API_TOKEN or not JIRA_EMAIL:
-        print("Error: Missing JIRA_EMAIL or JIRA_API_KEY in environment variables.")
+    if not JIRA_API_TOKEN or not JIRA_EMAIL or not JIRA_DOMAIN:
+        print("Error: Missing JIRA_URL, JIRA_USER_EMAIL, or JIRA_API_KEY in environment variables.")
         return
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     try:
-        # 1. Fetch registered Jira projects dynamically from database
-        jira_projects = get_registered_jira_projects(cursor)
+        init_raw_jira_table(cursor)
+
+        jira_projects = fetch_jira_project_keys_from_mapping()
         if not jira_projects:
-            print("Notice: No Jira projects found in service_realm_registry. Skipping fetch.")
+            print("Notice: No Jira project keys retrieved from MAPPING_WEB_APP_URL. Skipping fetch.")
             return
 
-        # 2. Construct dynamic JQL clause with quoted project names
+        print(f"Found Jira project keys to query: {jira_projects}")
+
         project_clause = ", ".join(f'"{p}"' for p in jira_projects)
         jql = (
             f"project IN ({project_clause}) "
@@ -91,67 +121,84 @@ def fetch_and_store_jira_releases():
             "AND resolved >= '2024-01-01'"
         )
 
-        url = f"https://{JIRA_DOMAIN}/rest/api/3/search"
+        search_url = f"https://{JIRA_DOMAIN}/rest/api/3/search/jql"
         auth = HTTPBasicAuth(JIRA_EMAIL, JIRA_API_TOKEN)
-        headers = {"Accept": "application/json", "Content-Type": "application/json"}
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
 
-        start_at = 0
-        max_results = 50
+        next_page_token = None
         total_releases = 0
 
         while True:
-            params = {
-                "jql": jql,
-                "startAt": start_at,
-                "maxResults": max_results,
-                "fields": "summary,status,components,resolutiondate,project"
+            payload = {
+                "jql": jql, 
+                "maxResults": 50,
+                "fields": ["summary", "issuetype", "status", "components", "resolutiondate"]
             }
+            if next_page_token:
+                payload["nextPageToken"] = next_page_token
 
-            res = requests.get(url, auth=auth, headers=headers, params=params, timeout=30)
+            res = requests.post(search_url, auth=auth, headers=headers, json=payload, timeout=30)
+            
+            if res.status_code == 400:
+                payload.pop("fields", None)
+                res = requests.post(search_url, auth=auth, headers=headers, json=payload, timeout=30)
+                
             res.raise_for_status()
             data = res.json()
+            
             issues = data.get("issues", [])
-
             if not issues:
                 break
 
-            for issue in issues:
-                issue_key = issue.get("key")
-                fields = issue.get("fields", {})
+            for issue_item in issues:
+                issue_id = str(issue_item.get("id"))
+                issue_key = issue_item.get("key")
+                fields = issue_item.get("fields", {})
 
-                # Outcome mapping: Done -> success, Failed -> failure
-                raw_status = fields.get("status", {}).get("name", "")
-                status = "success" if raw_status.lower() == "done" else "failure"
+                if not fields:
+                    issue_url = f"https://{JIRA_DOMAIN}/rest/api/3/issue/{issue_id}"
+                    issue_res = requests.get(issue_url, auth=auth, headers={"Accept": "application/json"}, timeout=15)
+                    if issue_res.status_code == 200:
+                        detail_data = issue_res.json()
+                        issue_key = detail_data.get("key", issue_key)
+                        fields = detail_data.get("fields", {})
 
-                # Parse resolution date
+                issue_type = fields.get("issuetype", {}).get("name", "Release")
+                summary = fields.get("summary", "")
+                status = fields.get("status", {}).get("name", "")
+                
+                components_list = fields.get("components", [])
+                components_str = ", ".join([c.get("name") for c in components_list if c.get("name")])
+
                 resolved_date = parse_iso_timestamp(fields.get("resolutiondate"))
 
-                # Extract component or project key as lookup target
-                components = fields.get("components", [])
-                project_key = fields.get("project", {}).get("key", "")
-                primary_service = components[0].get("name") if components else project_key
-
-                # Look up Team and Realm dynamically with fallback to project_key
-                team_name, realm_name = get_mapping_from_registry(cursor, primary_service, fallback_identifier=project_key)
-
-                deployment_id = f"jira_{issue_key}"
-                payload = (
-                    deployment_id,
-                    primary_service,
-                    realm_name,
-                    team_name,
-                    "jira",
+                raw_payload = (
+                    issue_type,
+                    issue_key,
+                    issue_id,
+                    summary,
                     status,
+                    components_str,
                     resolved_date
                 )
-                insert_deployment(cursor, payload)
+                
+                insert_raw_jira_release(cursor, raw_payload)
                 total_releases += 1
 
-            start_at += len(issues)
-            if start_at >= data.get("total", 0):
+            if data.get("isLast", True):
+                break
+                
+            next_page_token = data.get("nextPageToken")
+            if not next_page_token:
                 break
 
-        print(f"Successfully ingested {total_releases} Jira release issues.")
+        print(f"Successfully ingested {total_releases} raw Jira release issues into jira_releases_raw.")
+        
+        # Export CSV file for manual reconciliation
+        export_jira_releases_to_csv(cursor)
 
     except Exception as e:
         print(f"Error fetching Jira releases: {e}")

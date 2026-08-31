@@ -8,8 +8,18 @@ load_dotenv()
 
 DB_PATH = os.getenv("DB_PATH", os.path.join("database", "dora_metrics.db"))
 OUTPUT_DIR = "public"
-# Hard-set relative path so back links always work on any fork or local environment
 LANDING_PAGE_PATH = "../index.html"
+
+# Realm visual icon mappings
+REALM_ICONS = {
+    "Apps": "📱",
+    "Core": "⚙️",
+    "Machines Realm I - OS&FW": "🤖",
+    "Machines Realm II - MSW & FH": "🤖",
+    "Machine Realm": "🤖",
+    "Wellpass": "💚",
+    "Realm Support Services": "🛠️"
+}
 
 TRACKED_GAPS_FIELDS = [
     "Impact Started at", "Identified at", "Impact Fixed at", 
@@ -17,7 +27,6 @@ TRACKED_GAPS_FIELDS = [
 ]
 
 def get_table_columns(cursor, table_name):
-    """Safely fetch column names from a table."""
     try:
         cursor.execute(f"PRAGMA table_info({table_name})")
         return [row[1] for row in cursor.fetchall()]
@@ -25,435 +34,46 @@ def get_table_columns(cursor, table_name):
         return []
 
 def filter_missing_fields(raw_missing_str):
-    """Filters missing fields strictly to the 8 tracked fields."""
     if not raw_missing_str:
         return ""
     fields = [f.strip() for f in str(raw_missing_str).split(",")]
     filtered = [f for f in fields if f in TRACKED_GAPS_FIELDS]
     return ", ".join(filtered)
 
-HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{realm_name} - Incidents (MTTD & MTTR) Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {{
-            --primary: #1e293b;
-            --secondary: #64748b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
-        }}
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--primary);
-            margin: 0;
-            padding: 24px;
-        }}
-        .container {{
-            max-width: 1200px;
-            margin: 0 auto;
-        }}
-        .header-nav {{
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }}
-        .back-link {{
-            text-decoration: none;
-            color: #2563eb;
-            font-weight: 600;
-            font-size: 14px;
-        }}
-        .about-card {{
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }}
-        .about-card h3 {{ margin-top: 0; font-size: 16px; }}
-        .about-card p {{ font-size: 13.5px; line-height: 1.5; color: var(--secondary); }}
-        .abbrev-table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-            font-size: 13px;
-        }}
-        .abbrev-table th, .abbrev-table td {{
-            padding: 8px 12px;
-            text-align: left;
-            border-bottom: 1px solid #f1f5f9;
-        }}
-        .year-selector-container {{
-            text-align: center;
-            margin: 24px 0;
-        }}
-        .year-selector {{
-            padding: 8px 18px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 8px;
-            border: 1.5px solid #3b82f6;
-            background: #ffffff;
-            color: #1e293b;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(37,99,235,0.1);
-        }}
-        .metrics-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 24px;
-        }}
-        .card {{
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-        }}
-        .chart-container {{
-            position: relative;
-            height: 310px;
-            width: 100%;
-        }}
-        .chart-container-donut {{
-            position: relative;
-            height: 240px;
-            width: 100%;
-        }}
-        .chart-footer {{
-            margin-top: 14px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border);
-            font-size: 11.5px;
-            color: #64748b;
-            line-height: 1.45;
-        }}
-        .chart-footer code {{
-            background: #f1f5f9;
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 11px;
-        }}
-        .data-table {{
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12.5px;
-            margin-top: 12px;
-        }}
-        .data-table th, .data-table td {{
-            padding: 9px 12px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-        }}
-        .data-table th {{ background: #f8fafc; color: #475569; font-weight: 600; }}
-        .badge-success {{
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
-        }}
-        .badge-slack {{
-            background: #f1f5f9;
-            color: #475569;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            border: 1px solid #cbd5e1;
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- HEADER NAV -->
-        <div class="header-nav">
-            <a href="{landing_page_path}" class="back-link">← Back to EGYM DORA Metrics</a>
-            <h1 style="margin: 8px 0 0 0; font-size: 26px;">{realm_name}</h1>
-            <h2 style="margin: 4px 0 0 0; font-size: 16px; color: var(--secondary); font-weight: 400;">Incidents (MTTD & MTTR) Dashboard</h2>
-        </div>
+def load_template(filename):
+    path = os.path.join("publisher", filename)
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
 
-        <!-- ABOUT THIS REPORT CALLOUT CARD -->
-        <div class="about-card">
-            <h3>ℹ️ About this report</h3>
-            <p>This is the DORA Incidents (MTTD & MTTR) report for the <strong>{realm_name}</strong> — the <strong>{mapped_teams}</strong> engineering teams. In plain words, it answers two key questions: <strong>how fast do we notice an incident</strong>, and <strong>how fast do we recover from it</strong>. It is generated automatically from the same data feeds as the official DORA workbook, so the numbers match.</p>
-            
-            <h4 style="margin: 14px 0 6px 0; font-size: 13.5px;">Abbreviations & Terminology</h4>
-            <table class="abbrev-table">
-                <thead>
-                    <tr>
-                        <th style="width: 160px;">Term</th>
-                        <th>What it means</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>MTTD</strong></td>
-                        <td><strong>Mean Time To Detect</strong> — hours from when an incident's impact starts to when it is identified.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>MTTR</strong></td>
-                        <td><strong>Mean Time To Restore</strong> — hours from when impact starts to when it is fixed.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Calendar Year</strong></td>
-                        <td>Metrics and trends filtered strictly from <strong>1 January to 31 December</strong> for the selected calendar year.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>YTD</strong></td>
-                        <td><strong>Year To Date</strong> — aggregated metrics calculated from 1 January of the selected calendar year up to the latest recorded incident date.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mean vs Median</strong></td>
-                        <td><strong>Mean</strong> = average; <strong>Median</strong> = the middle value. A big gap between them means one or two extreme incidents are pulling the average up.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+def get_realm_metadata(cursor):
+    """
+    Dynamically pulls all active realms and team counts straight from SQLite.
+    Automatically scales when new teams or realms are added in the DB feed.
+    """
+    cursor.execute("SELECT DISTINCT realm_name FROM monthly_realm_metrics WHERE realm_name NOT LIKE 'Unmapped%'")
+    realms = [r[0] for r in cursor.fetchall()]
 
-        <!-- REPOSITIONED CALENDAR YEAR SELECTOR -->
-        <div class="year-selector-container">
-            <label for="yearSelect" style="font-weight: 700; margin-right: 8px; font-size: 14px;">Calendar Year:</label>
-            <select id="yearSelect" class="year-selector" onchange="updateDashboard(this.value)">
-                {year_options_html}
-            </select>
-        </div>
+    metadata = {}
+    for r in realms:
+        cursor.execute("SELECT COUNT(DISTINCT team_name) FROM service_realm_registry WHERE realm_name = ?", (r,))
+        cnt_row = cursor.fetchone()
+        team_count = cnt_row[0] if cnt_row and cnt_row[0] > 0 else 1
 
-        <!-- OVERVIEW CARDS -->
-        <div class="metrics-grid">
-            <div class="card">
-                <span style="color: var(--secondary); font-size: 12.5px; font-weight: 700; letter-spacing: 0.03em;">TOTAL UNIQUE INCIDENTS</span>
-                <div id="totalIncidentsCount" style="font-size: 32px; font-weight: 800; margin-top: 8px;">0</div>
-            </div>
-            <div class="card">
-                <span style="color: var(--secondary); font-size: 12.5px; font-weight: 700; letter-spacing: 0.03em;">YTD MEAN (MTTD / MTTR)</span>
-                <div id="ytdMeanText" style="font-size: 24px; font-weight: 800; margin-top: 8px; color: #2563eb;">0.0h / 0.0h</div>
-            </div>
-            <div class="card">
-                <span style="color: var(--secondary); font-size: 12.5px; font-weight: 700; letter-spacing: 0.03em;">YTD MEDIAN (MTTD / MTTR)</span>
-                <div id="ytdMedianText" style="font-size: 24px; font-weight: 800; margin-top: 8px; color: #059669;">0.0h / 0.0h</div>
-            </div>
-        </div>
+        slug = r.lower().replace(" ", "-").replace("&", "and")
+        icon = REALM_ICONS.get(r, "📦") # Fallback icon for any new future realm
+        is_cfr_eligible = (r != "Realm Support Services") # Business exclusion rule for Part 2
 
-        <!-- CHARTS SECTION -->
-        <div class="metrics-grid" style="grid-template-columns: 2fr 1fr;">
-            <div class="card">
-                <h3 id="monthlyChartTitle" style="margin-top: 0; font-size: 15px;">MTTD & MTTR — Monthly {default_year} (mean & median hours)</h3>
-                <div class="chart-container">
-                    <canvas id="monthlyChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <strong>Source:</strong> Incident.io · per month, two stacked bars side by side: Mean (MTTD + MTTR) and Median (MTTD + MTTR), hover on each segment labeled to view its value; computed over unique valid incidents in that month
-                </div>
-            </div>
+        metadata[r] = {
+            "slug": slug,
+            "icon": icon,
+            "teams": team_count,
+            "cfr": is_cfr_eligible
+        }
+    return metadata
 
-            <div class="card">
-                <h3 id="ytdChartTitle" style="margin-top: 0; font-size: 15px;">MTTD & MTTR — mean vs median ({default_year} YTD, hours)</h3>
-                <div class="chart-container">
-                    <canvas id="ytdChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <strong>Source:</strong> Incident.io · calendar year to date (<span class="footer-yr">{default_year}</span> YTD, Jan 1 → today), · two stacked bars, each MTTD (blue) + MTTR (green): left = mean, right = median. Each panel is scaled independently so the small median values stay readable. hover on each segment labeled to view its value; computed over unique valid incidents YTD
-                </div>
-            </div>
-        </div>
-
-        <!-- ROOT CAUSE & DATA GAPS SECTION -->
-        <div class="metrics-grid" style="grid-template-columns: 1fr 1fr;">
-            <div class="card">
-                <h3 style="margin-top: 0; font-size: 15px;">Incidents by Root Cause Service</h3>
-                <div class="chart-container-donut">
-                    <canvas id="rootCauseChart"></canvas>
-                </div>
-                <div class="chart-footer">
-                    <strong>Source:</strong> Incident.io · unique incidents (by ID) with both MTTD & MTTR, computed over Root Cause Service for unique valid incidents in the Calendar Year, multi-value split & counted per service. Labels show count and % of shown total · slices ≤5% hidden
-                </div>
-            </div>
-
-            <div class="card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <h3 style="margin: 0; font-size: 15px;">⚠️ Incident Data Quality Gaps</h3>
-                    <span class="badge-slack">live snapshot → #it-war-room</span>
-                </div>
-                <p style="font-size: 12.5px; color: var(--secondary); margin-bottom: 12px; line-height: 1.4;">
-                    Closed <strong>{realm_name}</strong> incidents missing key fields. Incident Lead is pinged in <code>#it-war-room</code> slack channel to update the missing fields within 24 hours of incident closure.
-                </p>
-
-                <div id="gapsContainer" style="flex: 1; overflow-y: auto;"></div>
-
-                <div class="chart-footer">
-                    <strong>Source:</strong> Incident.io · Status = Closed incidents missing data in Impact Started at, Identified at, Impact Fixed at, Root Cause Services, MTTD, MTTR, Incident Duration, Severity.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const realmPayload = {payload_json};
-        const latestYear = "{default_year}";
-        let monthlyChartInst = null;
-        let ytdChartInst = null;
-        let rootCauseChartInst = null;
-
-        function updateDashboard(selectedYear) {{
-            const yearData = realmPayload[selectedYear] || {{
-                monthly: [],
-                ytd: {{ incident_count: 0, mean_mttd: 0, median_mttd: 0, mean_mttr: 0, median_mttr: 0 }},
-                root_causes: {{}},
-                gaps: []
-            }};
-
-            document.getElementById('monthlyChartTitle').innerText = 'MTTD & MTTR — Monthly ' + selectedYear + ' (mean & median hours)';
-            document.getElementById('ytdChartTitle').innerText = 'MTTD & MTTR — mean vs median (' + selectedYear + ' YTD, hours)';
-            document.querySelectorAll('.footer-yr').forEach(el => el.innerText = selectedYear);
-
-            document.getElementById('totalIncidentsCount').innerText = yearData.ytd.incident_count || 0;
-            document.getElementById('ytdMeanText').innerText = (yearData.ytd.mean_mttd || 0) + 'h / ' + (yearData.ytd.mean_mttr || 0) + 'h';
-            document.getElementById('ytdMedianText').innerText = (yearData.ytd.median_mttd || 0) + 'h / ' + (yearData.ytd.median_mttr || 0) + 'h';
-
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const meanMTTD = yearData.monthly.map(m => m.mean_mttd || 0);
-            const meanMTTR = yearData.monthly.map(m => m.mean_mttr || 0);
-            const medianMTTD = yearData.monthly.map(m => m.median_mttd || 0);
-            const medianMTTR = yearData.monthly.map(m => m.median_mttr || 0);
-
-            if (monthlyChartInst) monthlyChartInst.destroy();
-            const ctxMonthly = document.getElementById('monthlyChart').getContext('2d');
-            monthlyChartInst = new Chart(ctxMonthly, {{
-                type: 'bar',
-                data: {{
-                    labels: months,
-                    datasets: [
-                        {{ label: 'Mean MTTD (hrs)', data: meanMTTD, backgroundColor: '#3b82f6', stack: 'Mean' }},
-                        {{ label: 'Mean MTTR (hrs)', data: meanMTTR, backgroundColor: '#10b981', stack: 'Mean' }},
-                        {{ label: 'Median MTTD (hrs)', data: medianMTTD, backgroundColor: '#93c5fd', stack: 'Median' }},
-                        {{ label: 'Median MTTR (hrs)', data: medianMTTR, backgroundColor: '#6ee7b7', stack: 'Median' }}
-                    ]
-                }},
-                options: {{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {{ legend: {{ position: 'bottom', labels: {{ boxWidth: 12, font: {{ size: 11 }} }} }} }},
-                    scales: {{ y: {{ title: {{ display: true, text: 'Hours', font: {{ size: 11 }} }} }} }}
-                }}
-            }});
-
-            if (ytdChartInst) ytdChartInst.destroy();
-            const ctxYTD = document.getElementById('ytdChart').getContext('2d');
-            ytdChartInst = new Chart(ctxYTD, {{
-                type: 'bar',
-                data: {{
-                    labels: ['YTD Overall'],
-                    datasets: [
-                        {{ label: 'Mean MTTD', data: [yearData.ytd.mean_mttd || 0], backgroundColor: '#3b82f6', stack: 'Mean' }},
-                        {{ label: 'Mean MTTR', data: [yearData.ytd.mean_mttr || 0], backgroundColor: '#10b981', stack: 'Mean' }},
-                        {{ label: 'Median MTTD', data: [yearData.ytd.median_mttd || 0], backgroundColor: '#93c5fd', stack: 'Median' }},
-                        {{ label: 'Median MTTR', data: [yearData.ytd.median_mttr || 0], backgroundColor: '#6ee7b7', stack: 'Median' }}
-                    ]
-                }},
-                options: {{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {{ legend: {{ position: 'bottom', labels: {{ boxWidth: 12, font: {{ size: 11 }} }} }} }},
-                    scales: {{ y: {{ title: {{ display: true, text: 'Hours', font: {{ size: 11 }} }} }} }}
-                }}
-            }});
-
-            if (rootCauseChartInst) rootCauseChartInst.destroy();
-            const rawRC = yearData.root_causes || {{}};
-            const totalRCCount = Object.values(rawRC).reduce((a, b) => a + b, 0);
-            
-            let filteredLabels = [];
-            let filteredValues = [];
-            let displayLabels = [];
-
-            if (totalRCCount > 0) {{
-                Object.entries(rawRC).forEach(([service, count]) => {{
-                    const pct = (count / totalRCCount) * 100;
-                    if (pct > 5.0) {{
-                        filteredLabels.push(service);
-                        filteredValues.push(count);
-                        displayLabels.push(service + ' — ' + pct.toFixed(1) + '%');
-                    }}
-                }});
-            }}
-
-            const colorCount = filteredLabels.length || 1;
-            const dynamicColors = filteredLabels.map((_, i) => 'hsl(' + ((i * 360) / colorCount) + ', 65%, 55%)');
-            const ctxRC = document.getElementById('rootCauseChart').getContext('2d');
-
-            rootCauseChartInst = new Chart(ctxRC, {{
-                type: 'doughnut',
-                data: {{
-                    labels: displayLabels.length ? displayLabels : ['No Incidents'],
-                    datasets: [{{
-                        data: filteredValues.length ? filteredValues : [1],
-                        backgroundColor: filteredLabels.length ? dynamicColors : ['#cbd5e1']
-                    }}]
-                }},
-                options: {{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {{
-                        legend: {{
-                            position: 'right',
-                            labels: {{ boxWidth: 10, font: {{ size: 10.5 }} }}
-                        }},
-                        tooltip: {{
-                            callbacks: {{
-                                title: function(context) {{
-                                    const index = context[0].dataIndex;
-                                    return filteredLabels[index] || context[0].label;
-                                }},
-                                label: function(context) {{
-                                    const val = context.parsed;
-                                    const pct = ((val / (totalRCCount || 1)) * 100).toFixed(1);
-                                    return ' Incidents: ' + val + ' (' + pct + '%)';
-                                }}
-                            }}
-                        }}
-                    }}
-                }}
-            }});
-
-            const gapsContainer = document.getElementById('gapsContainer');
-            if (!yearData.gaps || yearData.gaps.length === 0) {{
-                gapsContainer.innerHTML = '<div style="padding: 24px; text-align: center;"><span class="badge-success">No timestamp gaps 🎉</span><p style="margin-top: 8px; color: var(--secondary); font-size: 12px;">All closed incidents for ' + selectedYear + ' have complete timestamps and required metadata.</p></div>';
-            }} else {{
-                let tableHTML = '<table class="data-table"><thead><tr><th>Incident ID</th><th>Incident Lead</th><th>Missing Fields</th></tr></thead><tbody>';
-                yearData.gaps.forEach(g => {{
-                    tableHTML += '<tr><td><strong>#' + g.incident_id + '</strong></td><td>' + g.lead + '</td><td style="color: #dc2626; font-weight: 500;">' + g.missing + '</td></tr>';
-                }});
-                tableHTML += '</tbody></table>';
-                gapsContainer.innerHTML = tableHTML;
-            }}
-        }}
-
-        window.onload = () => updateDashboard(latestYear);
-    </script>
-</body>
-</html>"""
-
-def generate_site():
-    print("Starting DORA Site Generator...")
-    if not os.path.exists(DB_PATH):
-        print(f"Error: Database file missing at {DB_PATH}")
-        return
-
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    conn = sqlite3.connect(DB_PATH)
+def generate_mttd_mttr_dashboards(conn, available_years, default_year, year_options_html, realm_meta):
+    print("Generating MTTD & MTTR Dashboards...")
+    template = load_template("mttd_mttr_template.html")
     cursor = conn.cursor()
 
     monthly_cols = get_table_columns(cursor, "monthly_realm_metrics")
@@ -464,32 +84,7 @@ def generate_site():
     year_col_grid = "calendar_year" if "calendar_year" in grid_cols else ("year" if "year" in grid_cols else None)
     year_col_gaps = "calendar_year" if "calendar_year" in gaps_cols else ("year" if "year" in gaps_cols else None)
 
-    if year_col_monthly:
-        cursor.execute(f"""
-            SELECT DISTINCT {year_col_monthly} 
-            FROM monthly_realm_metrics 
-            WHERE {year_col_monthly} IS NOT NULL AND {year_col_monthly} != 'Unknown' 
-            ORDER BY {year_col_monthly} DESC
-        """)
-        available_years = [str(r[0]) for r in cursor.fetchall()]
-    else:
-        cursor.execute("SELECT DISTINCT substr(ym_code, 1, 4) FROM monthly_realm_metrics WHERE ym_code IS NOT NULL ORDER BY 1 DESC")
-        available_years = [str(r[0]) for r in cursor.fetchall()]
-
-    if not available_years:
-        available_years = ["2026", "2025", "2024", "2023", "2022"]
-
-    default_year = available_years[0]
-
-    year_options_html = ""
-    for yr in available_years:
-        selected_attr = "selected" if yr == default_year else ""
-        year_options_html += f'<option value="{yr}" {selected_attr}>{yr}</option>\n'
-
-    cursor.execute("SELECT DISTINCT realm_name FROM monthly_realm_metrics WHERE realm_name NOT LIKE 'Unmapped%'")
-    realms = [r[0] for r in cursor.fetchall()]
-
-    for realm in realms:
+    for realm, cfg in realm_meta.items():
         cursor.execute("SELECT team_name FROM service_realm_registry WHERE realm_name = ?", (realm,))
         teams_list = [t[0] for t in cursor.fetchall()]
         mapped_teams_str = ", ".join(teams_list) if teams_list else realm
@@ -562,13 +157,10 @@ def generate_site():
             for r in rc_rows:
                 raw_service = r[0]
                 count = r[1]
-                
-                # Option A: Map missing/placeholder services to "Other / Service Unmapped"
                 if "missing in list" in raw_service.lower() or "ping sre" in raw_service.lower():
                     clean_service = "Other / Service Unmapped"
                 else:
                     clean_service = raw_service
-                
                 root_causes[clean_service] = root_causes.get(clean_service, 0) + count
 
             if year_col_gaps:
@@ -602,23 +194,187 @@ def generate_site():
                 "gaps": gaps_list
             }
 
-        html_content = HTML_TEMPLATE.format(
-            realm_name=realm,
-            mapped_teams=mapped_teams_str,
-            landing_page_path=LANDING_PAGE_PATH,
-            year_options_html=year_options_html,
-            default_year=default_year,
-            payload_json=json.dumps(realm_data)
-        )
+        # Safe string replacement (avoids KeyError on JS braces)
+        html_content = template.replace("{realm_name}", realm)
+        html_content = html_content.replace("{mapped_teams}", mapped_teams_str)
+        html_content = html_content.replace("{landing_page_path}", LANDING_PAGE_PATH)
+        html_content = html_content.replace("{year_options_html}", year_options_html)
+        html_content = html_content.replace("{default_year}", default_year)
+        html_content = html_content.replace("{payload_json}", json.dumps(realm_data))
 
-        slug = realm.lower().replace(" ", "-").replace("&", "and")
-        out_path = os.path.join(OUTPUT_DIR, f"{slug}.html")
+        out_path = os.path.join(OUTPUT_DIR, f"{cfg['slug']}.html")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(html_content)
-        print(f"Generated dashboard: {out_path}")
+        print(f"Generated MTTD/MTTR Dashboard: {out_path}")
+
+def generate_cfr_dashboards(conn, available_years, default_year, year_options_html, realm_meta):
+    print("Generating CFR Dashboards...")
+    template = load_template("cfr_dr_template.html")
+    cursor = conn.cursor()
+
+    for realm, cfg in realm_meta.items():
+        if not cfg["cfr"]:
+            continue
+
+        cursor.execute("SELECT team_name FROM service_realm_registry WHERE realm_name = ?", (realm,))
+        teams_list = [t[0] for t in cursor.fetchall()]
+        mapped_teams_str = ", ".join(teams_list) if teams_list else realm
+
+        cfr_payload = {}
+        for year in available_years:
+            try:
+                cursor.execute("""
+                    SELECT success_status, COUNT(*) 
+                    FROM wrangled_cfr_deployments 
+                    WHERE realm_name = ? AND calendar_year = ?
+                    GROUP BY success_status
+                """, (realm, year))
+                tot_rows = dict(cursor.fetchall())
+            except Exception:
+                tot_rows = {}
+
+            succ_cnt = tot_rows.get('Success', 0)
+            fail_cnt = tot_rows.get('Failure', 0)
+            total_cnt = succ_cnt + fail_cnt
+            cfr_pct = f"{((fail_cnt / total_cnt) * 100):.1f}%" if total_cnt > 0 else "0.0%"
+
+            try:
+                cursor.execute("""
+                    SELECT team_name, success_status, COUNT(*) 
+                    FROM wrangled_cfr_deployments 
+                    WHERE realm_name = ? AND calendar_year = ?
+                    GROUP BY team_name, success_status
+                """, (realm, year))
+                team_rows = cursor.fetchall()
+            except Exception:
+                team_rows = []
+
+            teams_dict = {}
+            for t_name, status, cnt in team_rows:
+                if t_name not in teams_dict:
+                    teams_dict[t_name] = {"success": 0, "failure": 0, "total": 0}
+                if status == 'Success':
+                    teams_dict[t_name]["success"] += cnt
+                else:
+                    teams_dict[t_name]["failure"] += cnt
+                teams_dict[t_name]["total"] += cnt
+
+            try:
+                cursor.execute("""
+                    SELECT issue_key, summary, component_name, resolved_date 
+                    FROM unmapped_jira_releases 
+                    WHERE realm_name = ? AND calendar_year = ?
+                """, (realm, year))
+                unmapped_rows = cursor.fetchall()
+            except Exception:
+                unmapped_rows = []
+
+            unmapped_list = [{
+                "key": r[0],
+                "summary": r[1],
+                "component": r[2] or "Unmapped",
+                "resolved": r[3] or "N/A"
+            } for r in unmapped_rows]
+
+            cfr_payload[year] = {
+                "total": total_cnt,
+                "success": succ_cnt,
+                "failure": fail_cnt,
+                "cfr_pct": cfr_pct,
+                "teams": teams_dict,
+                "unmapped": unmapped_list
+            }
+
+        # Safe string replacement (avoids KeyError on JS braces)
+        html_out = template.replace("{realm_name}", realm)
+        html_out = html_out.replace("{mapped_teams}", mapped_teams_str)
+        html_out = html_out.replace("{landing_page_path}", LANDING_PAGE_PATH)
+        html_out = html_out.replace("{year_options_html}", year_options_html)
+        html_out = html_out.replace("{default_year}", default_year)
+        html_out = html_out.replace("{payload_json}", json.dumps(cfr_payload))
+
+        slug = realm.lower().replace(" ", "-").replace("&", "and")
+        out_path = os.path.join(OUTPUT_DIR, f"{slug}-cfr-dashboard.html")
+        with open(out_path, "w", encoding="utf-8") as f:
+            f.write(html_out)
+        print(f"Generated CFR Dashboard: {out_path}")
+
+def generate_landing_page(realm_meta, latest_month_str):
+    print("Generating Master Landing Page (index.html)...")
+    landing_template = load_template("landing_template.html")
+
+    flow_cards_html = ""
+    incident_cards_html = ""
+    cfr_cards_html = ""
+
+    for realm_name, cfg in realm_meta.items():
+        # SECTION 1: FLOW METRICS (Preserves colleague's repository structure: apps/, core/, etc.)
+        flow_cards_html += f'''
+        <a href="{cfg['slug']}/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 2: DORA INCIDENTS - PART 1 (Points strictly to public/ DORA files)
+        incident_cards_html += f'''
+        <a href="public/{cfg['slug']}.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 3: DORA CFR - PART 2 (Points strictly to public/ CFR files)
+        if cfg["cfr"]:
+            cfr_cards_html += f'''
+            <a href="public/{cfg['slug']}-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+                <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>'''
+
+    landing_html = landing_template.replace("{{FLOW_CARDS}}", flow_cards_html)
+    landing_html = landing_html.replace("{{INCIDENT_CARDS}}", incident_cards_html)
+    landing_html = landing_html.replace("{{CFR_CARDS}}", cfr_cards_html)
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(landing_html)
+    print("Master Landing Page index.html Generated Successfully!")
+
+def generate_site():
+    print("Starting DORA Site Generator...")
+    if not os.path.exists(DB_PATH):
+        print(f"Error: Database file missing at {DB_PATH}")
+        return
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    monthly_cols = get_table_columns(cursor, "monthly_realm_metrics")
+    year_col = "calendar_year" if "calendar_year" in monthly_cols else ("year" if "year" in monthly_cols else None)
+
+    if year_col:
+        cursor.execute(f"SELECT DISTINCT {year_col} FROM monthly_realm_metrics WHERE {year_col} IS NOT NULL AND {year_col} != 'Unknown' ORDER BY {year_col} DESC")
+        available_years = [str(r[0]) for r in cursor.fetchall()]
+    else:
+        available_years = ["2026", "2025", "2024"]
+
+    if not available_years:
+        available_years = ["2026", "2025", "2024"]
+
+    default_year = available_years[0]
+    year_options_html = "".join([f'<option value="{yr}" {"selected" if yr == default_year else ""}>{yr}</option>\n' for yr in available_years])
+
+    latest_month_str = datetime.now().strftime("%b %y")
+    realm_meta = get_realm_metadata(cursor)
+
+    generate_mttd_mttr_dashboards(conn, available_years, default_year, year_options_html, realm_meta)
+    generate_cfr_dashboards(conn, available_years, default_year, year_options_html, realm_meta)
+    generate_landing_page(realm_meta, latest_month_str)
 
     conn.close()
-    print("Site Generation Complete! Dynamic Year Filter & Landing Path fully configured.")
+    print("Complete Site Generation Finished!")
 
 if __name__ == "__main__":
     generate_site()

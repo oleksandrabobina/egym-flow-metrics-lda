@@ -1,23 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>EGYM DORA METRICS</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-900 text-slate-100 min-h-screen p-8">
-    <div class="max-w-6xl mx-auto">
-        <header class="border-b border-slate-700 pb-6 mb-8 text-center">
-            <h1 class="text-4xl font-extrabold tracking-tight text-sky-400">EGYM DORA METRICS</h1>
-            <p class="text-slate-400 mt-2">Dynamic Multi-Realm Engineering Performance & Governance Portal</p>
-        </header>
+def generate_landing_page(realm_meta, latest_month_str):
+    print("Generating Master Landing Page (index.html)...")
+    landing_template = load_template("landing_template.html")
 
-        <main>
-            <h2 class="text-xl font-semibold mb-6 text-slate-300">Engineering Realms</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {{REALM_CARDS}}
-            </div>
-        </main>
-    </div>
-</body>
-</html>
+    flow_cards_html = ""
+    incident_cards_html = ""
+    cfr_cards_html = ""
+
+    for realm_name, cfg in realm_meta.items():
+        # SECTION 1: FLOW METRICS
+        # Points directly to your colleague's existing directory structure (e.g. apps/index.html)
+        flow_cards_html += f'''
+        <a href="{cfg['slug']}/" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 2: DORA INCIDENTS (PART 1)
+        # Points strictly to your generated public/ files (e.g. public/apps.html)
+        incident_cards_html += f'''
+        <a href="public/{cfg['slug']}.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+            <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>'''
+
+        # SECTION 3: DORA CFR (PART 2)
+        # Points strictly to your generated public/ CFR files (e.g. public/apps-cfr-dashboard.html)
+        if cfg["cfr"]:
+            cfr_cards_html += f'''
+            <a href="public/{cfg['slug']}-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">{cfg['icon']} {realm_name}</h3>
+                <p class="text-sm text-slate-400 mt-2">{cfg['teams']} teams · Latest: {latest_month_str}</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>'''
+
+    landing_html = landing_template.replace("{{FLOW_CARDS}}", flow_cards_html)
+    landing_html = landing_html.replace("{{INCIDENT_CARDS}}", incident_cards_html)
+    landing_html = landing_html.replace("{{CFR_CARDS}}", cfr_cards_html)
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(landing_html)
+    print("Master Landing Page index.html Generated Successfully!")

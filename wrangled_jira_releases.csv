@@ -1,0 +1,172 @@
+Issue Type,Issue key,Summary,Components,Team,Realm,Date,Status,Success
+Release,SMAQ-316,Machine GUI Release v1.301.0,GUI,MSW FE,Machines Realm II - MSW & FH,25-08-2026,Done,Success
+Release,SMAQ-272,Machine GUI Release v1.298.0,GUI,MSW FE,Machines Realm II - MSW & FH,29-06-2026,Done,Success
+Release,SMAQ-236,Machine GUI Release v1.295.0,GUI,MSW FE,Machines Realm II - MSW & FH,04-05-2026,Done,Success
+Release,SMAQ-174,Machine GUI Release v1.292.0,GUI,MSW FE,Machines Realm II - MSW & FH,03-03-2026,Done,Success
+Release,SMAQ-147,Machine GUI Release v1.291.1,GUI,MSW FE,Machines Realm II - MSW & FH,03-02-2026,Done,Success
+Release,SMAQ-130,Machine GUI Release v1.290.0,GUI,MSW FE,Machines Realm II - MSW & FH,08-01-2026,Done,Success
+Release,SMAQ-89,Machine GUI Release v1.287.0,GUI,MSW FE,Machines Realm II - MSW & FH,11-11-2025,Done,Success
+Release,SMAQ-48,Machine GUI Release v1.285.1 (Patched),GUI,MSW FE,Machines Realm II - MSW & FH,14-10-2025,Done,Success
+Release,SCOR-442,Machine GUI Release v1.300.0,GUI,MSW FE,Machines Realm II - MSW & FH,28-07-2026,Done,Success
+Release,SCOR-430,Machine GUI Release v1.299.1,GUI,MSW FE,Machines Realm II - MSW & FH,13-07-2026,Done,Success
+Release,SCOR-402,Machine GUI Release v1.299.0,GUI,MSW FE,Machines Realm II - MSW & FH,10-07-2026,Failed,Failure
+Release,SCOR-364,Machine GUI Release v1.297.0,GUI,MSW FE,Machines Realm II - MSW & FH,03-06-2026,Done,Success
+Release,SCOR-313,Machine GUI Release v1.296.0,GUI,MSW FE,Machines Realm II - MSW & FH,08-05-2026,Done,Success
+Release,SCOR-290,Machine GUI Release v1.294.0,GUI,MSW FE,Machines Realm II - MSW & FH,30-03-2026,Done,Success
+Release,SCOR-256,Machine GUI Release v1.293.0,GUI,MSW FE,Machines Realm II - MSW & FH,13-03-2026,Done,Success
+Release,SCOR-165,Machine GUI Release v1.289.0,GUI,MSW FE,Machines Realm II - MSW & FH,10-12-2025,Done,Success
+Release,SCOR-154,Machine GUI Release v1.288.0,GUI,MSW FE,Machines Realm II - MSW & FH,02-12-2025,Done,Success
+Release,SCOR-99,Machine GUI Release v1.286.0,GUI,MSW FE,Machines Realm II - MSW & FH,23-10-2025,Done,Success
+Release,MI-9156,Device OS v113.2 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,24-08-2026,Done,Success
+Release,MI-9137,Device OS v113.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,17-07-2026,Failed,Failure
+Release,MI-9098,Device OS v113.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-07-2026,Failed,Failure
+Release,MI-9033,Device OS v112.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,12-06-2026,Done,Success
+Release,MI-9003,Device OS v112.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,01-06-2026,Failed,Failure
+Release,MI-8967,Device OS v110.1 assembly release for PC,OS,MI OS,Machines Realm I - OS&FW,22-05-2026,Done,Success
+Release,MI-8924,Device OS v111.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,11-05-2026,Done,Success
+Release,MI-8878,Device OS v109.4 assembly-only _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,16-04-2026,Done,Success
+Release,MI-8860,Device OS v110.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,29-04-2026,Done,Success
+Release,MI-8832,Device OS v109.3 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-04-2026,Done,Success
+Release,MI-8794,Update recovery images to 109.4 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,14-04-2026,Done,Success
+Release,MI-8765,Device OS v109.2 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,01-04-2026,Failed,Failure
+Release,MI-8748,Device OS v109.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-03-2026,Failed,Failure
+Release,MI-8716,Device OS v108.2 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,06-03-2026,Done,Success
+Release,MI-8697,Device OS v109.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,17-03-2026,Failed,Failure
+Release,MI-8679,Device OS v108.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,27-02-2026,Failed,Failure
+Release,MI-8635,Device OS v107.2 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,24-02-2026,Done,Success
+Release,MI-8619,Device OS v108.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,24-02-2026,Failed,Failure
+Release,MI-8581,Device OS v107.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,17-02-2026,Done,Success
+Release,MI-8533,Device OS v107.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,20-01-2026,Failed,Failure
+Release,MI-8474,Device OS v106.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,05-12-2025,Done,Success
+Release,MI-8462,Device OS v105.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,17-11-2025,Done,Success
+Release,MI-8428,Device OS recovery image update _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-11-2025,Done,Success
+Release,MI-8417,Device OS v105.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,28-10-2025,Failed,Failure
+Release,MI-8331,Device OS v104.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-10-2025,Done,Success
+Release,MI-8274,Device OS v103.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,22-09-2025,Done,Success
+Release,MI-8192,Device OS v102.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,29-08-2025,Done,Success
+Release,MI-8182,Flexx Software v0.23 _RELEASE_,Smart Flex,Smart Flex,Machines Realm I - OS&FW,18-09-2025,Done,Success
+Release,MI-8141,Device OS v101.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-08-2025,Failed,Failure
+Release,MI-8067,Device OS v100 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,06-08-2025,Done,Success
+Release,MI-8029,Device OS v99.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,21-07-2025,Failed,Failure
+Release,MI-8009,Device OS v99.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,10-07-2025,Failed,Failure
+Release,MI-7945,Device OS v98.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-06-2025,Done,Success
+Release,MI-7881,Device OS v98.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,10-06-2025,Failed,Failure
+Release,MI-7854,Device OS v97.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-06-2025,Done,Success
+Release,MI-7820,Device OS v96.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,04-06-2025,Done,Success
+Release,MI-7779,Device OS v96.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,13-05-2025,Failed,Failure
+Release,MI-7701,Device OS v95.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,22-04-2025,Done,Success
+Release,MI-7667,FW: Assembly Release for New Resistors,Smart Strength,MSW FE,Machines Realm II - MSW & FH,07-05-2025,Done,Success
+Release,MI-7653,__RELEASE__ CB Firmware v811,FW,MI FW,Machines Realm I - OS&FW,20-05-2025,Done,Success
+Release,MI-7642,Device OS v95.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,22-04-2025,Done,Success
+Release,MI-7550,Device OS v94.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,17-03-2025,Done,Success
+Release,MI-7487,Device OS v93.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,14-02-2025,Done,Success
+Release,MI-7398,_RELEASE_ Device OS v92.0,OS,MI OS,Machines Realm I - OS&FW,13-01-2025,Done,Success
+Release,MI-7338,_RELEASE_ Device OS v91.0,OS,MI OS,Machines Realm I - OS&FW,18-12-2024,Done,Success
+Release,MI-7306,_RELEASE_ CB FW v809,FW,MI FW,Machines Realm I - OS&FW,25-02-2025,Done,Success
+Release,MI-7266,_RELEASE_ Control Board Bootloader v225,FW,MI FW,Machines Realm I - OS&FW,16-01-2025,Done,Success
+Release,MI-7136,_RELEASE_ Device OS v90.0,OS,MI OS,Machines Realm I - OS&FW,26-11-2024,Done,Success
+Release,MI-7070,_RELEASE_ Device OS v89.1,OS,MI OS,Machines Realm I - OS&FW,28-10-2024,Done,Success
+Release,MI-7045,_RELEASE_ Device OS v88.1,OS,MI OS,Machines Realm I - OS&FW,07-10-2024,Done,Success
+Release,MI-6999,_RELEASE_ CB Firmware v808,Control Board Firmware,Unassigned,Unassigned,04-11-2024,Failed,Failure
+Release,MI-6983,_RELEASE_ Device OS v88.0,OS,MI OS,Machines Realm I - OS&FW,23-09-2024,Failed,Failure
+Release,MI-6938,_RELEASE_ Device OS v87.1,OS,MI OS,Machines Realm I - OS&FW,30-08-2024,Done,Success
+Release,MI-6924,_RELEASE_ CB Firmware v807,FW,MI FW,Machines Realm I - OS&FW,03-09-2024,Failed,Failure
+Release,MI-6895,_RELEASE_ Device OS v87.0,OS,MI OS,Machines Realm I - OS&FW,19-08-2024,Done,Success
+Release,MI-6880,__RELEASE__ Firmware v806,FW,MI FW,Machines Realm I - OS&FW,12-08-2024,Done,Success
+Release,MI-6816,_RELEASE_ Device OS v86.0,OS,MI OS,Machines Realm I - OS&FW,02-07-2024,Done,Success
+Release,MI-6741,_RELEASE_ CB Firmware v804,FW,MI FW,Machines Realm I - OS&FW,02-07-2024,Done,Success
+Release,MI-6692,_RELEASE_ Device OS 85.0,OS,MI OS,Machines Realm I - OS&FW,27-05-2024,Done,Success
+Release,MI-6677,_RELEASE_ Bootloader 224,FW,MI FW,Machines Realm I - OS&FW,03-06-2024,Done,Success
+Release,MI-6635,_RELEASE_ CB Firmware v803,FW,MI FW,Machines Realm I - OS&FW,10-06-2024,Done,Success
+Release,MI-6618,_RELEASE_ Device OS v84.0,OS,MI OS,Machines Realm I - OS&FW,22-05-2024,Done,Success
+Release,MI-6596,FW: _RELEASE_ FW v802,FW,MI FW,Machines Realm I - OS&FW,22-05-2024,Done,Success
+Release,MI-6576,VTAP firmware v2.2.3.2,Other,Unassigned,Unassigned,09-04-2024,Done,Success
+Release,MI-6543,_RELEASE_ CB Firmware v801,FW,MI FW,Machines Realm I - OS&FW,14-05-2024,Done,Success
+Release,MI-6520,Device OS v83.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,22-04-2024,Done,Success
+Release,MI-6483,__RELEASE__ FW v800,FW,MI FW,Machines Realm I - OS&FW,29-04-2024,Done,Success
+Release,MI-6452,__RELEASE__ FW CBv1 639 CBv2 775,FW,MI FW,Machines Realm I - OS&FW,18-04-2024,Done,Success
+Release,MI-6426,_RELEASE_ CB Firmware CBv1 637 CBv2 773,FW,MI FW,Machines Realm I - OS&FW,10-04-2024,Done,Success
+Release,MI-6410,Device OS v82.0 __RELEASE__,OS,MI OS,Machines Realm I - OS&FW,08-03-2024,Done,Success
+Release,MI-6385,Device OS v81.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-6319,Smart Flex Bundle _RELEASE_ v0.22,Smart Flex,Smart Flex,Machines Realm I - OS&FW,26-02-2024,Done,Success
+Release,MI-6307,_RELEASE_ CB Firmware CBv1 635 CBv2 771,FW,MI FW,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-6291,Device OS v80.1 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,14-02-2024,Done,Success
+Release,MI-6250,Device OS v80.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-5897,_RELEASE_ CB Firmware CBv1 627 CBv2 763 [E309 Reduction],FW,MI FW,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-5844,Device OS v75.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-5730,_RELEASE_ KNT FU Firmware 2.01.012,FW,MI FW,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-5675,Device OS v72.0 _RELEASE_,OS,MI OS,Machines Realm I - OS&FW,25-03-2024,Failed,Failure
+Release,MI-3998,Execute Gentoo migration: Converted machines with Custom Wi-Fi settings (Milestone 4),OS,MI OS,Machines Realm I - OS&FW,27-08-2024,Done,Success
+Release,MI-3996,Execute Gentoo migration: Resistive Touchscreen + standard config machines (Milestone 3),OS,MI OS,Machines Realm I - OS&FW,05-07-2024,Done,Success
+Release,FW-927,Initial Workout Model on Nexus Machine,,Unassigned,Unassigned,28-08-2026,Done,Success
+Release,FW-873,FW v831 : Hotfix for v830,Control Board FW,MI FW,Machines Realm I - OS&FW,21-07-2026,Done,Success
+Release,FW-860,FW 831,Control Board FW,MI FW,Machines Realm I - OS&FW,21-07-2026,Done,Success
+Release,FW-816,FW 830,Control Board FW,MI FW,Machines Realm I - OS&FW,15-07-2026,Failed,Failure
+Release,FW-815,__RELEASE__ CB Firmware v830,Control Board FW,MI FW,Machines Realm I - OS&FW,17-06-2026,Failed,Failure
+Release,FW-775,LED FW 1.0,Aurora,MI FW,Machines Realm I - OS&FW,15-07-2026,Done,Success
+Release,FW-731,LED FW v0.9,Aurora,MI FW,Machines Realm I - OS&FW,28-04-2026,Done,Success
+Release,FW-698,LED BL v1.4,Aurora,MI FW,Machines Realm I - OS&FW,28-04-2026,Done,Success
+Release,FW-644,__RELEASE__ ASM Firmware v829,"Assembly, Control Board FW",Unassigned,Unassigned,30-03-2026,Done,Success
+Release,FW-639,Test Release 2,Control Board FW,MI FW,Machines Realm I - OS&FW,23-03-2026,Done,Success
+Release,FW-637,Smart LED FW v0.8,Aurora,MI FW,Machines Realm I - OS&FW,28-04-2026,Failed,Failure
+Release,FW-620,828,Control Board FW,MI FW,Machines Realm I - OS&FW,15-07-2026,Done,Success
+Release,FW-619,__RELEASE__ CB Firmware v828,Control Board FW,MI FW,Machines Realm I - OS&FW,01-04-2026,Done,Success
+Release,FW-605,AURORA FW 0.5,Aurora,MI FW,Machines Realm I - OS&FW,23-03-2026,Done,Success
+Release,FW-583,FW 827,Control Board FW,MI FW,Machines Realm I - OS&FW,15-07-2026,Failed,Failure
+Release,FW-582,__RELEASE__ CB Firmware v827,Control Board FW,MI FW,Machines Realm I - OS&FW,16-03-2026,Failed,Failure
+Release,FW-551,__RELEASE__ CB Firmware v826,Control Board FW,MI FW,Machines Realm I - OS&FW,16-02-2026,Done,Success
+Release,FW-512,__RELEASE__ CB Firmware v825,Control Board FW,MI FW,Machines Realm I - OS&FW,23-12-2025,Done,Success
+Release,FW-449,__RELEASE__ CB Firmware v824,Control Board FW,MI FW,Machines Realm I - OS&FW,01-12-2025,Done,Success
+Release,FW-410,__RELEASE__ CB Firmware v823: v820 hotfix,Control Board FW,MI FW,Machines Realm I - OS&FW,07-11-2025,Failed,Failure
+Release,FW-396,__RELEASE__ CB Firmware v822: v819 Assembly mode FW hotfix,Control Board FW,MI FW,Machines Realm I - OS&FW,29-10-2025,Done,Success
+Release,FW-382,__RELEASE__ CB Firmware v821: v818 hotfix,Control Board FW,MI FW,Machines Realm I - OS&FW,04-11-2025,Done,Success
+Release,FW-364,Release v820,Control Board FW,MI FW,Machines Realm I - OS&FW,16-10-2025,Failed,Failure
+Release,FW-348,__RELEASE__ CB Firmware v819: Assembly FW,Control Board FW,MI FW,Machines Realm I - OS&FW,16-10-2025,Failed,Failure
+Release,FW-329,__RELEASE__ CB Firmware v818,Control Board FW,MI FW,Machines Realm I - OS&FW,16-10-2025,Failed,Failure
+Release,FW-293,Release v817 ,Control Board FW,MI FW,Machines Realm I - OS&FW,07-10-2025,Done,Success
+Release,FW-251,__RELEASE__ CB Firmware v816,Control Board FW,MI FW,Machines Realm I - OS&FW,25-09-2025,Done,Success
+Release,FW-250,__RELEASE__ CB Firmware v816,Control Board FW,MI FW,Machines Realm I - OS&FW,05-08-2025,Done,Success
+Release,FW-236,__RELEASE__ CB Firmware v815 - Assembly FW,Control Board FW,MI FW,Machines Realm I - OS&FW,25-08-2025,Done,Success
+Release,FW-99,_RELEASE_ Control Board Bootloader v226,Control Board FW,MI FW,Machines Realm I - OS&FW,25-07-2025,Done,Success
+Release,FW-98,__RELEASE__ CB Firmware v814,Control Board FW,MI FW,Machines Realm I - OS&FW,25-08-2025,Done,Success
+Release,FW-97,__RELEASE__ CB Firmware v813,Control Board FW,MI FW,Machines Realm I - OS&FW,18-07-2025,Done,Success
+Release,BAST-171,Release v1.290.1,GUI,MSW FE,Machines Realm II - MSW & FH,21-01-2026,Done,Success
+Release,ASD-4252,Fitness Hub 1.57,Fitnesshub,FH,Machines Realm II - MSW & FH,31-07-2026,Done,Success
+Release,ASD-4226,Fitness Hub 1.56,Fitnesshub,FH,Machines Realm II - MSW & FH,16-07-2026,Done,Success
+Release,ASD-4180,Fitness Hub 1.55,Fitnesshub,FH,Machines Realm II - MSW & FH,30-06-2026,Done,Success
+Release,ASD-4132,Fithub Release 1.54,Fitnesshub,FH,Machines Realm II - MSW & FH,28-05-2026,Done,Success
+Release,ASD-4047,Release v1.53,Fitnesshub,FH,Machines Realm II - MSW & FH,30-04-2026,Done,Success
+Release,ASD-4031,Fitness Hub Release 1.52,Fitnesshub,FH,Machines Realm II - MSW & FH,23-04-2026,Done,Success
+Release,ASD-4010,Fitness Hub Release 1.51.1,Fitnesshub,FH,Machines Realm II - MSW & FH,23-03-2026,Done,Success
+Release,ASD-3984,Release 1.50.1,Fitnesshub,FH,Machines Realm II - MSW & FH,11-03-2026,Done,Success
+Release,ASD-3937,Release v1.49,Fitnesshub,FH,Machines Realm II - MSW & FH,23-02-2026,Done,Success
+Release,ASD-3927,Release v1.48.1,Fitnesshub,FH,Machines Realm II - MSW & FH,06-02-2026,Done,Success
+Release,ASD-3898,Fitness Hub 1.47,Fitnesshub,FH,Machines Realm II - MSW & FH,30-01-2026,Done,Success
+Release,ASD-3862,Release v1.47,Fitnesshub,FH,Machines Realm II - MSW & FH,05-05-2026,Done,Success
+Release,ASD-3842,Release v1.46.2,Fitnesshub,FH,Machines Realm II - MSW & FH,05-01-2026,Done,Success
+Release,ASD-3803,Release v1.45,Fitnesshub,FH,Machines Realm II - MSW & FH,11-12-2025,Done,Success
+Release,ASD-3722,Release v1.44,Fitnesshub,FH,Machines Realm II - MSW & FH,28-11-2025,Done,Success
+Release,ASD-3684,Release v1.43,Fitnesshub,FH,Machines Realm II - MSW & FH,29-10-2025,Done,Success
+Release,ASD-3663,Release v1.42.0,Fitnesshub,FH,Machines Realm II - MSW & FH,09-10-2025,Done,Success
+Release,ASD-3590,Release v1.41,Fitnesshub,FH,Machines Realm II - MSW & FH,07-10-2025,Done,Success
+Release,ASD-3570,Release 1.40,Fitnesshub,FH,Machines Realm II - MSW & FH,19-08-2025,Done,Success
+Release,ASD-3524,Release v1.39,Fitnesshub,FH,Machines Realm II - MSW & FH,28-07-2025,Done,Success
+Release,ASD-3498,Release 1.38,Fitnesshub,FH,Machines Realm II - MSW & FH,09-07-2025,Done,Success
+Release,ASD-3461,Fitness Hub Release 1.37,Fitnesshub,FH,Machines Realm II - MSW & FH,30-06-2025,Done,Success
+Release,ASD-3413,Release 1.36,Fitnesshub,FH,Machines Realm II - MSW & FH,17-06-2025,Done,Success
+Release,ASD-3388,Fitness Hub v1.35,Fitnesshub,FH,Machines Realm II - MSW & FH,02-06-2025,Done,Success
+Release,ASD-3348,Fitness Hub v1.34,Fitnesshub,FH,Machines Realm II - MSW & FH,19-05-2025,Done,Success
+Release,ASD-3258,Release 1.33,Fitnesshub,FH,Machines Realm II - MSW & FH,30-04-2025,Done,Success
+Release,ASD-3129,Release 1.32.1,Fitnesshub,FH,Machines Realm II - MSW & FH,03-03-2025,Done,Success
+Release,ASD-3086,Release 1.31,Fitnesshub,FH,Machines Realm II - MSW & FH,16-01-2025,Done,Success
+Release,ASD-3027,Release 1.30.2,Fitnesshub,FH,Machines Realm II - MSW & FH,13-12-2024,Done,Success
+Release,ASD-2997,Release 1.29,Fitnesshub,FH,Machines Realm II - MSW & FH,05-12-2024,Done,Success
+Release,ASD-2950,Release 1.28.1,Fitnesshub,FH,Machines Realm II - MSW & FH,06-11-2024,Done,Success
+Release,ASD-2893,Release 1.27,Fitnesshub,FH,Machines Realm II - MSW & FH,17-10-2024,Done,Success
+Release,ASD-2806,Release 1.26,Fitnesshub,FH,Machines Realm II - MSW & FH,24-09-2024,Done,Success
+Release,ASD-2764,Release tilt hotfix as 1.25.2,Fitnesshub,FH,Machines Realm II - MSW & FH,24-07-2024,Done,Success
+Release,ASD-2744,Release 1.25,Fitnesshub,FH,Machines Realm II - MSW & FH,08-07-2024,Done,Success
+Release,ASD-2692,Release v1.24.1,Fitnesshub,FH,Machines Realm II - MSW & FH,12-06-2024,Done,Success
+Release,ASD-2592,Release 1.23.2,Fitnesshub,FH,Machines Realm II - MSW & FH,23-04-2024,Done,Success
+Release,ASD-2491,Release 1.21,Fitnesshub,FH,Machines Realm II - MSW & FH,15-03-2024,Done,Success
+Release,ASD-2454,Release 1.20,Fitnesshub,FH,Machines Realm II - MSW & FH,15-02-2024,Done,Success

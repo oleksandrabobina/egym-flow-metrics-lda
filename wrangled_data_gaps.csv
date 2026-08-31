@@ -10,16 +10,16 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 101,85,Core,Viktor Kholod,Affected Products,Closed
 102,84,Core,Viktor Kholod,Affected Products,Closed
 103,82,Apps,Kolawole Akinwande,Affected Products,Closed
-104,81,Apps,Wassim Benzarti,Affected Products,Closed
+104,81,Core,Wassim Benzarti,Affected Products,Closed
 105,80,Apps,Viktor Kholod,Affected Products,Closed
 106,79,Core,Serhii Hychka,Affected Products,Closed
 107,78,Core,Serhii Hychka,Affected Products,Closed
 108,77,Machines Realm II - MSW & FH,Ingeborg Becht,Affected Products,Closed
 109,76,Wellpass,Beatrix Vad,Affected Products,Closed
 110,75,Machines Realm II - MSW & FH,Zongrong Li,Affected Products,Closed
-111,74,Core,Galen Abell,Affected Products,Closed
-112,74,Apps,Galen Abell,Affected Products,Closed
-113,72,Apps,Kolawole Akinwande,Affected Products,Closed
+111,74,Apps,Galen Abell,Affected Products,Closed
+112,74,Core,Galen Abell,Affected Products,Closed
+113,72,Core,Kolawole Akinwande,Affected Products,Closed
 114,71,Core,Wassim Benzarti,Affected Products,Closed
 115,71,Apps,Wassim Benzarti,Affected Products,Closed
 116,71,Machines Realm II - MSW & FH,Wassim Benzarti,Affected Products,Closed
@@ -43,10 +43,10 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 134,53,Wellpass,Viktor Kholod,Affected Products,Closed
 135,53,Core,Viktor Kholod,Affected Products,Closed
 136,53,Apps,Viktor Kholod,Affected Products,Closed
-137,44,Realm Support Services,Jean Mainguy,Affected Products,Closed
-138,44,Wellpass,Jean Mainguy,Affected Products,Closed
-139,44,Core,Jean Mainguy,Affected Products,Closed
-140,44,Apps,Jean Mainguy,Affected Products,Closed
+137,44,Wellpass,Jean Mainguy,Affected Products,Closed
+138,44,Core,Jean Mainguy,Affected Products,Closed
+139,44,Apps,Jean Mainguy,Affected Products,Closed
+140,44,Realm Support Services,Jean Mainguy,Affected Products,Closed
 141,43,Machines Realm II - MSW & FH,Ben Ammann,Affected Products,Closed
 142,42,Core,Viktor Kholod,Affected Products,Closed
 143,42,Apps,Viktor Kholod,Affected Products,Closed
@@ -55,21 +55,21 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 146,39,Core,Marty Küntzel,Affected Products,Closed
 147,39,Machines Realm II - MSW & FH,Marty Küntzel,Affected Products,Closed
 148,37,Apps,Maura Borean,Affected Products,Closed
-149,36,Core,Jean Mainguy,Affected Products,Closed
-150,36,Apps,Jean Mainguy,Affected Products,Closed
+149,36,Apps,Jean Mainguy,Affected Products,Closed
+150,36,Core,Jean Mainguy,Affected Products,Closed
 151,35,Wellpass,Jacob Lawton,Affected Products,Closed
 152,34,Core,Viktor Kholod,Affected Products,Closed
 153,34,Apps,Viktor Kholod,Affected Products,Closed
 154,33,Core,Yahodzinskyi Konstantin,Affected Products,Closed
 155,32,Core,Cem Freimoser,Affected Products,Closed
 156,32,Machines Realm II - MSW & FH,Cem Freimoser,Affected Products,Closed
-157,30,Realm Support Services,Cem Freimoser,Affected Products,Closed
-158,30,Core,Cem Freimoser,Affected Products,Closed
-1,264,Core,Mehdi Ben Chikha,Affected Products,Closed
-2,264,Apps,Mehdi Ben Chikha,Affected Products,Closed
+157,30,Core,Cem Freimoser,Affected Products,Closed
+158,30,Realm Support Services,Cem Freimoser,Affected Products,Closed
+1,264,Apps,Mehdi Ben Chikha,Affected Products,Closed
+2,264,Core,Mehdi Ben Chikha,Affected Products,Closed
 3,256,Wellpass,Freddy Stéphane Moussandja Nyembi,"Fixed at, Incident duration, MTTD, MTTR",Closed
 4,251,Machines Realm II - MSW & FH,Eldad Zack,Affected Products,Closed
-5,248,Unassigned Realm,Panshul Gupta,"Affected Team, Affected Products, Root Cause Services",Closed
+5,248,Unassigned Realm,Panshul Gupta,"Affected Team, Root Cause Services",Closed
 6,247,Wellpass,Alexandra Rusu,"Fixed at, MTTR",Closed
 7,233,Wellpass,Cyril Bonnet,Affected Products,Closed
 8,225,Unassigned Realm,Matthias Benkard,"Affected Team, Root Cause Services",Closed
@@ -111,20 +111,20 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 44,154,Core,Tanya Gdulya,Affected Products,Closed
 45,151,Wellpass,Jacob Lawton,Affected Products,Closed
 46,150,Wellpass,Khaled Saidi,Affected Products,Closed
-47,149,Apps,Eldad Zack,Affected Products,Closed
-48,148,Apps,Pavel Kolmykov,Affected Products,Closed
-49,147,Apps,Pavel Kolmykov,Affected Products,Closed
+47,149,Core,Eldad Zack,Affected Products,Closed
+48,148,Core,Pavel Kolmykov,Affected Products,Closed
+49,147,Core,Pavel Kolmykov,Affected Products,Closed
 50,146,Core,Viktor Kholod,Affected Products,Closed
 51,144,Wellpass,Freddy Stéphane Moussandja Nyembi,Affected Products,Closed
 52,142,Wellpass,Jacob Lawton,Affected Products,Closed
 53,141,Core,Serhii Hychka,Affected Products,Closed
-54,140,Core,Victor Ortega,Affected Products,Closed
-55,140,Apps,Victor Ortega,Affected Products,Closed
+54,140,Apps,Victor Ortega,Affected Products,Closed
+55,140,Core,Victor Ortega,Affected Products,Closed
 56,139,Wellpass,Jacob Lawton,Affected Products,Closed
 57,137,Wellpass,Jacob Lawton,Affected Products,Closed
 58,136,Wellpass,Kolawole Akinwande,Affected Products,Closed
 59,135,Wellpass,Dmytro Sholom,Affected Products,Closed
-60,134,Apps,Denys Bieltsov,Affected Products,Closed
+60,134,Core,Denys Bieltsov,Affected Products,Closed
 61,133,Core,Serhii Hychka,Affected Products,Closed
 62,131,Wellpass,Kolawole Akinwande,Affected Products,Closed
 63,129,Core,Matthias Benkard,"Affected Products, Root Cause Services",Closed
@@ -133,15 +133,15 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 66,124,Core,Marty Küntzel,Affected Products,Closed
 67,123,Wellpass,Amith Raravi,Affected Products,Closed
 68,122,Wellpass,Saury Pande,Affected Products,Closed
-69,119,Core,Kolawole Akinwande,Affected Products,Closed
-70,119,Apps,Kolawole Akinwande,Affected Products,Closed
+69,119,Apps,Kolawole Akinwande,Affected Products,Closed
+70,119,Core,Kolawole Akinwande,Affected Products,Closed
 71,118,Machines Realm II - MSW & FH,Cem Freimoser,Affected Products,Closed
-72,116,Core,Jean Mainguy,Affected Products,Closed
-73,116,Apps,Jean Mainguy,Affected Products,Closed
+72,116,Apps,Jean Mainguy,Affected Products,Closed
+73,116,Core,Jean Mainguy,Affected Products,Closed
 74,115,Wellpass,Pedro Rosa,Affected Products,Closed
-75,114,Realm Support Services,Siddik Acil,Affected Products,Closed
+75,114,Core,Siddik Acil,Affected Products,Closed
 76,114,Machines Realm I - OS&FW,Siddik Acil,Affected Products,Closed
-77,114,Core,Siddik Acil,Affected Products,Closed
+77,114,Realm Support Services,Siddik Acil,Affected Products,Closed
 78,114,Machines Realm II - MSW & FH,Siddik Acil,Affected Products,Closed
 79,113,Core,Eldad Zack,Affected Products,Closed
 80,112,Core,Serhii Hychka,Affected Products,Closed
@@ -153,7 +153,7 @@ id,incident_id,realm_name,incident_lead,missing_fields,status
 86,103,Core,Roman Dziuba,Affected Products,Closed
 87,102,Realm Support Services,Roman Dziuba,Affected Products,Closed
 88,102,Core,Roman Dziuba,Affected Products,Closed
-89,101,Realm Support Services,Jean Mainguy,Affected Products,Closed
-90,101,Core,Jean Mainguy,Affected Products,Closed
-91,100,Realm Support Services,Viktor Kholod,Affected Products,Closed
-92,100,Apps,Viktor Kholod,Affected Products,Closed
+89,101,Core,Jean Mainguy,Affected Products,Closed
+90,101,Realm Support Services,Jean Mainguy,Affected Products,Closed
+91,100,Apps,Viktor Kholod,Affected Products,Closed
+92,100,Realm Support Services,Viktor Kholod,Affected Products,Closed

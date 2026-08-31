@@ -259,8 +259,7 @@ def wrangle_incidents():
         # Aggregations per Realm, Calendar Year, and Month
         # Require ONLY valid mttd_hours AND mttr_hours to include in time metrics
         cursor.execute("""
-            SELECT realm_name, calendar_year, strftime('%m', impact_started_at) as month_num,
-                   mttd_hours, mttr_hours
+            SELECT realm_name, calendar_year, impact_started_at, mttd_hours, mttr_hours
             FROM realm_incident_grid
             WHERE realm_name NOT LIKE 'Unmapped%' 
               AND realm_name != 'Unassigned Realm'
@@ -274,10 +273,15 @@ def wrangle_incidents():
         ytd_grouped = {}
         distinct_realms_years = set()
 
-        for realm, cal_yr, month_num, mttd_h, mttr_h in grid_records:
-            if not cal_yr or cal_yr == "Unknown" or not month_num:
+        for realm, cal_yr, impact_ts, mttd_h, mttr_h in grid_records:
+            if not cal_yr or cal_yr == "Unknown":
                 continue
 
+            dt_obj = parse_iso(impact_ts)
+            if not dt_obj:
+                continue
+
+            month_num = dt_obj.strftime("%m")
             distinct_realms_years.add((realm, cal_yr))
 
             # Monthly Key

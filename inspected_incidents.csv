@@ -11,7 +11,7 @@ id,status,severity,impact_started_at,identified_at,fixed_at,mttd,mttr,incident_d
 251,Closed,Critical,2026-07-02T12:24:00Z,2026-07-02T12:30:00Z,2026-07-02T13:07:00Z,360,2580,3420,MSW,Partner API,,Eldad Zack
 250,Closed,Non-Critical,2026-06-26T12:21:00Z,2026-06-26T15:15:00Z,2026-06-26T15:55:56.634Z,10440,12896,247022,WP Discovery,Mobile-Api,Wellpass,Tanya Gdulya
 249,Closed,Critical,2026-06-23T11:00:00Z,2026-06-23T16:55:06.887Z,2026-06-24T15:33:29.042Z,21306,22309,23413,WP Access Experience,Anticorr-Mindbody | Anticorr-Monday,Wellpass,Cyril Bonnet
-248,Closed,Non-Critical,2026-06-23T09:57:00Z,2026-06-23T11:15:00Z,2026-06-23T11:21:00Z,4680,5040,5580,Unassigned,,,Panshul Gupta
+248,Closed,Non-Critical,2026-06-23T09:57:00Z,2026-06-23T11:15:00Z,2026-06-23T11:21:00Z,4680,5040,5580,Unassigned,,Smart Flex | Smart Strength | Fitness Hub,Panshul Gupta
 247,Closed,Critical,2026-06-21T22:23:00Z,2026-06-22T10:38:32.27Z,,44132,,46414,WP Partner Experience,Operator Portal Backend,Wellpass,Alexandra Rusu
 246,Closed,Critical,2026-06-02T15:45:00Z,2026-06-02T16:07:00Z,2026-06-02T17:15:00Z,1320,5400,12710,MSW,GCP | Machine-Training | Machine-User-Settings,Smart Strength | Smart Flex,Siddik Acil
 245,Closed,Critical,2026-05-28T07:18:00Z,2026-05-28T08:02:56.063Z,2026-05-28T07:51:35.669Z,2696,2015,3282,WP Discovery | WP Access Experience,Gymfinder-backend,Wellpass,Richard Ricciardelli

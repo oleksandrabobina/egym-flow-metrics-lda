@@ -1,0 +1,172 @@
+Issue Type,Issue key,Issue id,Summary,Status,Components,Resolved
+Release,SMAQ-316,495972,Machine GUI Release v1.301.0,Done,GUI,2026-08-25
+Release,SMAQ-272,473322,Machine GUI Release v1.298.0,Done,GUI,2026-06-29
+Release,SMAQ-236,445191,Machine GUI Release v1.295.0,Done,GUI,2026-05-04
+Release,SMAQ-174,420409,Machine GUI Release v1.292.0,Done,GUI,2026-03-03
+Release,SMAQ-147,411572,Machine GUI Release v1.291.1,Done,GUI,2026-02-03
+Release,SMAQ-130,403967,Machine GUI Release v1.290.0,Done,GUI,2026-01-08
+Release,SMAQ-89,382005,Machine GUI Release v1.287.0,Done,GUI,2025-11-11
+Release,SMAQ-48,372775,Machine GUI Release v1.285.1 (Patched),Done,GUI,2025-10-14
+Release,SCOR-442,486664,Machine GUI Release v1.300.0,Done,GUI,2026-07-28
+Release,SCOR-430,485714,Machine GUI Release v1.299.1,Done,GUI,2026-07-13
+Release,SCOR-402,478572,Machine GUI Release v1.299.0,Failed,GUI,2026-07-10
+Release,SCOR-364,466384,Machine GUI Release v1.297.0,Done,GUI,2026-06-03
+Release,SCOR-313,453223,Machine GUI Release v1.296.0,Done,GUI,2026-05-08
+Release,SCOR-290,434082,Machine GUI Release v1.294.0,Done,GUI,2026-03-30
+Release,SCOR-256,425611,Machine GUI Release v1.293.0,Done,GUI,2026-03-13
+Release,SCOR-165,398487,Machine GUI Release v1.289.0,Done,GUI,2025-12-10
+Release,SCOR-154,392594,Machine GUI Release v1.288.0,Done,GUI,2025-12-02
+Release,SCOR-99,376039,Machine GUI Release v1.286.0,Done,GUI,2025-10-23
+Release,MI-9156,488450,Device OS v113.2 _RELEASE_,Done,OS,2026-08-24
+Release,MI-9137,487034,Device OS v113.1 _RELEASE_,Failed,OS,2026-07-17
+Release,MI-9098,476588,Device OS v113.0 _RELEASE_,Failed,OS,2026-07-13
+Release,MI-9033,469606,Device OS v112.1 _RELEASE_,Done,OS,2026-06-12
+Release,MI-9003,467119,Device OS v112.0 _RELEASE_,Failed,OS,2026-06-01
+Release,MI-8967,460655,Device OS v110.1 assembly release for PC,Done,OS,2026-05-22
+Release,MI-8924,453918,Device OS v111.0 _RELEASE_,Done,OS,2026-05-11
+Release,MI-8878,445784,Device OS v109.4 assembly-only _RELEASE_,Done,OS,2026-04-16
+Release,MI-8860,445346,Device OS v110.0 _RELEASE_,Done,OS,2026-04-29
+Release,MI-8832,440995,Device OS v109.3 _RELEASE_,Done,OS,2026-04-13
+Release,MI-8794,434827,Update recovery images to 109.4 _RELEASE_,Done,OS,2026-04-14
+Release,MI-8765,432962,Device OS v109.2 _RELEASE_,Failed,OS,2026-04-01
+Release,MI-8748,431572,Device OS v109.1 _RELEASE_,Failed,OS,2026-03-13
+Release,MI-8716,426528,Device OS v108.2 _RELEASE_,Done,OS,2026-03-06
+Release,MI-8697,425926,Device OS v109.0 _RELEASE_,Failed,OS,2026-03-17
+Release,MI-8679,424188,Device OS v108.1 _RELEASE_,Failed,OS,2026-02-27
+Release,MI-8635,418292,Device OS v107.2 _RELEASE_,Done,OS,2026-02-24
+Release,MI-8619,416795,Device OS v108.0 _RELEASE_,Failed,OS,2026-02-24
+Release,MI-8581,411870,Device OS v107.1 _RELEASE_,Done,OS,2026-02-17
+Release,MI-8533,402491,Device OS v107.0 _RELEASE_,Failed,OS,2026-01-20
+Release,MI-8474,386583,Device OS v106.0 _RELEASE_,Done,OS,2025-12-05
+Release,MI-8462,385625,Device OS v105.1 _RELEASE_,Done,OS,2025-11-17
+Release,MI-8428,379467,Device OS recovery image update _RELEASE_,Done,OS,2025-11-25
+Release,MI-8417,379393,Device OS v105.0 _RELEASE_,Failed,OS,2025-10-28
+Release,MI-8331,370206,Device OS v104.0 _RELEASE_,Done,OS,2025-10-13
+Release,MI-8274,363284,Device OS v103.0 _RELEASE_,Done,OS,2025-09-22
+Release,MI-8192,353942,Device OS v102.0 _RELEASE_,Done,OS,2025-08-29
+Release,MI-8182,353686,Flexx Software v0.23 _RELEASE_,Done,Smart Flex,2025-09-18
+Release,MI-8141,350997,Device OS v101.0 _RELEASE_,Failed,OS,2025-08-13
+Release,MI-8067,342292,Device OS v100 _RELEASE_,Done,OS,2025-08-06
+Release,MI-8029,339940,Device OS v99.1 _RELEASE_,Failed,OS,2025-07-21
+Release,MI-8009,338483,Device OS v99.0 _RELEASE_,Failed,OS,2025-07-10
+Release,MI-7945,330507,Device OS v98.1 _RELEASE_,Done,OS,2025-06-25
+Release,MI-7881,328404,Device OS v98.0 _RELEASE_,Failed,OS,2025-06-10
+Release,MI-7854,326116,Device OS v97.0 _RELEASE_,Done,OS,2025-06-13
+Release,MI-7820,324119,Device OS v96.1 _RELEASE_,Done,OS,2025-06-04
+Release,MI-7779,320530,Device OS v96.0 _RELEASE_,Failed,OS,2025-05-13
+Release,MI-7701,313737,Device OS v95.1 _RELEASE_,Done,OS,2025-04-22
+Release,MI-7667,311028,FW: Assembly Release for New Resistors,Done,Smart Strength,2025-05-07
+Release,MI-7653,310418,__RELEASE__ CB Firmware v811,Done,FW,2025-05-20
+Release,MI-7642,310401,Device OS v95.0 _RELEASE_,Done,OS,2025-04-22
+Release,MI-7550,304617,Device OS v94.0 _RELEASE_,Done,OS,2025-03-17
+Release,MI-7487,298648,Device OS v93.0 _RELEASE_,Done,OS,2025-02-14
+Release,MI-7398,292117,_RELEASE_ Device OS v92.0,Done,OS,2025-01-13
+Release,MI-7338,288490,_RELEASE_ Device OS v91.0,Done,OS,2024-12-18
+Release,MI-7306,286845,_RELEASE_ CB FW v809,Done,FW,2025-02-25
+Release,MI-7266,285046,_RELEASE_ Control Board Bootloader v225,Done,FW,2025-01-16
+Release,MI-7136,279513,_RELEASE_ Device OS v90.0,Done,OS,2024-11-26
+Release,MI-7070,272318,_RELEASE_ Device OS v89.1,Done,OS,2024-10-28
+Release,MI-7045,271935,_RELEASE_ Device OS v88.1,Done,OS,2024-10-07
+Release,MI-6999,268996,_RELEASE_ CB Firmware v808,Failed,Control Board Firmware,2024-11-04
+Release,MI-6983,267757,_RELEASE_ Device OS v88.0,Failed,OS,2024-09-23
+Release,MI-6938,263975,_RELEASE_ Device OS v87.1,Done,OS,2024-08-30
+Release,MI-6924,263315,_RELEASE_ CB Firmware v807,Failed,FW,2024-09-03
+Release,MI-6895,260493,_RELEASE_ Device OS v87.0,Done,OS,2024-08-19
+Release,MI-6880,258722,__RELEASE__ Firmware v806,Done,FW,2024-08-12
+Release,MI-6816,253648,_RELEASE_ Device OS v86.0,Done,OS,2024-07-02
+Release,MI-6741,250435,_RELEASE_ CB Firmware v804,Done,FW,2024-07-02
+Release,MI-6692,246321,_RELEASE_ Device OS 85.0,Done,OS,2024-05-27
+Release,MI-6677,245419,_RELEASE_ Bootloader 224,Done,FW,2024-06-03
+Release,MI-6635,243189,_RELEASE_ CB Firmware v803,Done,FW,2024-06-10
+Release,MI-6618,242403,_RELEASE_ Device OS v84.0,Done,OS,2024-05-22
+Release,MI-6596,242106,FW: _RELEASE_ FW v802,Done,FW,2024-05-22
+Release,MI-6576,241144,VTAP firmware v2.2.3.2,Done,Other,2024-04-09
+Release,MI-6543,238832,_RELEASE_ CB Firmware v801,Done,FW,2024-05-14
+Release,MI-6520,238283,Device OS v83.0 _RELEASE_,Done,OS,2024-04-22
+Release,MI-6483,237179,__RELEASE__ FW v800,Done,FW,2024-04-29
+Release,MI-6452,236022,__RELEASE__ FW CBv1 639 CBv2 775,Done,FW,2024-04-18
+Release,MI-6426,234397,_RELEASE_ CB Firmware CBv1 637 CBv2 773,Done,FW,2024-04-10
+Release,MI-6410,233530,Device OS v82.0 __RELEASE__,Done,OS,2024-03-08
+Release,MI-6385,232197,Device OS v81.0 _RELEASE_,Failed,OS,2024-03-25
+Release,MI-6319,228837,Smart Flex Bundle _RELEASE_ v0.22,Done,Smart Flex,2024-02-26
+Release,MI-6307,228484,_RELEASE_ CB Firmware CBv1 635 CBv2 771,Failed,FW,2024-03-25
+Release,MI-6291,228205,Device OS v80.1 _RELEASE_,Done,OS,2024-02-14
+Release,MI-6250,225038,Device OS v80.0 _RELEASE_,Failed,OS,2024-03-25
+Release,MI-5897,205494,_RELEASE_ CB Firmware CBv1 627 CBv2 763 [E309 Reduction],Failed,FW,2024-03-25
+Release,MI-5844,204399,Device OS v75.0 _RELEASE_,Failed,OS,2024-03-25
+Release,MI-5730,201551,_RELEASE_ KNT FU Firmware 2.01.012,Failed,FW,2024-03-25
+Release,MI-5675,193969,Device OS v72.0 _RELEASE_,Failed,OS,2024-03-25
+Release,MI-3998,151286,Execute Gentoo migration: Converted machines with Custom Wi-Fi settings (Milestone 4),Done,OS,2024-08-27
+Release,MI-3996,151284,Execute Gentoo migration: Resistive Touchscreen + standard config machines (Milestone 3),Done,OS,2024-07-05
+Release,FW-927,489904,Initial Workout Model on Nexus Machine,Done,,2026-08-28
+Release,FW-873,476244,FW v831 : Hotfix for v830,Done,Control Board FW,2026-07-21
+Release,FW-860,474697,FW 831,Done,Control Board FW,2026-07-21
+Release,FW-816,470604,FW 830,Failed,Control Board FW,2026-07-15
+Release,FW-815,470603,__RELEASE__ CB Firmware v830,Failed,Control Board FW,2026-06-17
+Release,FW-775,464533,LED FW 1.0,Done,Aurora,2026-07-15
+Release,FW-731,455761,LED FW v0.9,Done,Aurora,2026-04-28
+Release,FW-698,452345,LED BL v1.4,Done,Aurora,2026-04-28
+Release,FW-644,440396,__RELEASE__ ASM Firmware v829,Done,"Assembly, Control Board FW",2026-03-30
+Release,FW-639,437122,Test Release 2,Done,Control Board FW,2026-03-23
+Release,FW-637,437087,Smart LED FW v0.8,Failed,Aurora,2026-04-28
+Release,FW-620,432697,828,Done,Control Board FW,2026-07-15
+Release,FW-619,432696,__RELEASE__ CB Firmware v828,Done,Control Board FW,2026-04-01
+Release,FW-605,422141,AURORA FW 0.5,Done,Aurora,2026-03-23
+Release,FW-583,419462,FW 827,Failed,Control Board FW,2026-07-15
+Release,FW-582,419461,__RELEASE__ CB Firmware v827,Failed,Control Board FW,2026-03-16
+Release,FW-551,411130,__RELEASE__ CB Firmware v826,Done,Control Board FW,2026-02-16
+Release,FW-512,397275,__RELEASE__ CB Firmware v825,Done,Control Board FW,2025-12-23
+Release,FW-449,386530,__RELEASE__ CB Firmware v824,Done,Control Board FW,2025-12-01
+Release,FW-410,379012,__RELEASE__ CB Firmware v823: v820 hotfix,Failed,Control Board FW,2025-11-07
+Release,FW-396,378953,__RELEASE__ CB Firmware v822: v819 Assembly mode FW hotfix,Done,Control Board FW,2025-10-29
+Release,FW-382,376718,__RELEASE__ CB Firmware v821: v818 hotfix,Done,Control Board FW,2025-11-04
+Release,FW-364,372353,Release v820,Failed,Control Board FW,2025-10-16
+Release,FW-348,369251,__RELEASE__ CB Firmware v819: Assembly FW,Failed,Control Board FW,2025-10-16
+Release,FW-329,366654,__RELEASE__ CB Firmware v818,Failed,Control Board FW,2025-10-16
+Release,FW-293,358877,Release v817 ,Done,Control Board FW,2025-10-07
+Release,FW-251,350886,__RELEASE__ CB Firmware v816,Done,Control Board FW,2025-09-25
+Release,FW-250,350571,__RELEASE__ CB Firmware v816,Done,Control Board FW,2025-08-05
+Release,FW-236,344425,__RELEASE__ CB Firmware v815 - Assembly FW,Done,Control Board FW,2025-08-25
+Release,FW-99,329011,_RELEASE_ Control Board Bootloader v226,Done,Control Board FW,2025-07-25
+Release,FW-98,340000,__RELEASE__ CB Firmware v814,Done,Control Board FW,2025-08-25
+Release,FW-97,325468,__RELEASE__ CB Firmware v813,Done,Control Board FW,2025-07-18
+Release,BAST-171,411209,Release v1.290.1,Done,GUI,2026-01-21
+Release,ASD-4252,491768,Fitness Hub 1.57,Done,Fitnesshub,2026-07-31
+Release,ASD-4226,486091,Fitness Hub 1.56,Done,Fitnesshub,2026-07-16
+Release,ASD-4180,476164,Fitness Hub 1.55,Done,Fitnesshub,2026-06-30
+Release,ASD-4132,465055,Fithub Release 1.54,Done,Fitnesshub,2026-05-28
+Release,ASD-4047,438985,Release v1.53,Done,Fitnesshub,2026-04-30
+Release,ASD-4031,438384,Fitness Hub Release 1.52,Done,Fitnesshub,2026-04-23
+Release,ASD-4010,434040,Fitness Hub Release 1.51.1,Done,Fitnesshub,2026-03-23
+Release,ASD-3984,428641,Release 1.50.1,Done,Fitnesshub,2026-03-11
+Release,ASD-3937,416333,Release v1.49,Done,Fitnesshub,2026-02-23
+Release,ASD-3927,416309,Release v1.48.1,Done,Fitnesshub,2026-02-06
+Release,ASD-3898,412591,Fitness Hub 1.47,Done,Fitnesshub,2026-01-30
+Release,ASD-3862,408272,Release v1.47,Done,Fitnesshub,2026-05-05
+Release,ASD-3842,404046,Release v1.46.2,Done,Fitnesshub,2026-01-05
+Release,ASD-3803,400274,Release v1.45,Done,Fitnesshub,2025-12-11
+Release,ASD-3722,386768,Release v1.44,Done,Fitnesshub,2025-11-28
+Release,ASD-3684,376064,Release v1.43,Done,Fitnesshub,2025-10-29
+Release,ASD-3663,374448,Release v1.42.0,Done,Fitnesshub,2025-10-09
+Release,ASD-3590,352301,Release v1.41,Done,Fitnesshub,2025-10-07
+Release,ASD-3570,352063,Release 1.40,Done,Fitnesshub,2025-08-19
+Release,ASD-3524,343616,Release v1.39,Done,Fitnesshub,2025-07-28
+Release,ASD-3498,337069,Release 1.38,Done,Fitnesshub,2025-07-09
+Release,ASD-3461,333878,Fitness Hub Release 1.37,Done,Fitnesshub,2025-06-30
+Release,ASD-3413,328778,Release 1.36,Done,Fitnesshub,2025-06-17
+Release,ASD-3388,326234,Fitness Hub v1.35,Done,Fitnesshub,2025-06-02
+Release,ASD-3348,322368,Fitness Hub v1.34,Done,Fitnesshub,2025-05-19
+Release,ASD-3258,313122,Release 1.33,Done,Fitnesshub,2025-04-30
+Release,ASD-3129,298215,Release 1.32.1,Done,Fitnesshub,2025-03-03
+Release,ASD-3086,292411,Release 1.31,Done,Fitnesshub,2025-01-16
+Release,ASD-3027,290051,Release 1.30.2,Done,Fitnesshub,2024-12-13
+Release,ASD-2997,286411,Release 1.29,Done,Fitnesshub,2024-12-05
+Release,ASD-2950,280323,Release 1.28.1,Done,Fitnesshub,2024-11-06
+Release,ASD-2893,275155,Release 1.27,Done,Fitnesshub,2024-10-17
+Release,ASD-2806,264130,Release 1.26,Done,Fitnesshub,2024-09-24
+Release,ASD-2764,258143,Release tilt hotfix as 1.25.2,Done,Fitnesshub,2024-07-24
+Release,ASD-2744,256955,Release 1.25,Done,Fitnesshub,2024-07-08
+Release,ASD-2692,251559,Release v1.24.1,Done,Fitnesshub,2024-06-12
+Release,ASD-2592,242078,Release 1.23.2,Done,Fitnesshub,2024-04-23
+Release,ASD-2491,233401,Release 1.21,Done,Fitnesshub,2024-03-15
+Release,ASD-2454,229461,Release 1.20,Done,Fitnesshub,2024-02-15
