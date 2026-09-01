@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EGYM DORA METRICS - Core-Platform Realm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-8">
+    <div class="max-w-7xl mx-auto space-y-10">
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-slate-700 pb-6">
+            <div>
+                <a href="index.html" class="text-sm text-sky-400 hover:underline">&larr; Back to EGYM DORA METRICS</a>
+                <h1 class="text-3xl font-bold text-slate-100 mt-1">Core-Platform Realm Dashboard</h1>
+            </div>
+        </div>
+
+        <!-- MTTD/MTTR Track -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-sky-400 border-b border-slate-800 pb-2">MTTD / MTTR Performance Track</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <p class="text-sm text-slate-400 font-medium">12-Month Unique Valid Incidents</p>
+                    <p class="text-4xl font-extrabold text-sky-400 mt-2">0</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold mb-4">Rolling 12-Mo Calendar (Mean vs. Median Hours)</h3>
+                    <canvas id="mttdMttrStackedBar"></canvas>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold mb-4">YTD Dual-Panel Scaling</h3>
+                    <canvas id="ytdDualPanelChart"></canvas>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold mb-4">Root Cause (Rolling 12-Month)</h3>
+                    <canvas id="rootCause12mDonut"></canvas>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <h3 class="text-lg font-semibold mb-4">Root Cause (Historical Since 2022)</h3>
+                    <canvas id="rootCauseHistDonut"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- DF/CFR Track -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-sky-400 border-b border-slate-800 pb-2">Deployment Frequency & CFR Track</h2>
+            
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h3 class="text-lg font-semibold mb-4">Multi-Year Overall CFR (2024–2026)</h3>
+                <canvas id="multiYearCfrChart"></canvas>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-xl font-bold text-slate-200">Annual Team Breakdowns</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-slate-200">2024 Performance</span>
+                    <span class="text-xs bg-amber-900/60 text-amber-300 font-semibold px-2 py-0.5 rounded-full">Overall CFR: 5.2%</span>
+                </div>
+                <p class="text-xs text-slate-400">Teams: Payments-Team, Infrastructure</p>
+            </div>
+            
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-slate-200">2025 Performance</span>
+                    <span class="text-xs bg-amber-900/60 text-amber-300 font-semibold px-2 py-0.5 rounded-full">Overall CFR: 5.2%</span>
+                </div>
+                <p class="text-xs text-slate-400">Teams: Payments-Team, Infrastructure</p>
+            </div>
+            
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-slate-200">2026 Performance</span>
+                    <span class="text-xs bg-amber-900/60 text-amber-300 font-semibold px-2 py-0.5 rounded-full">Overall CFR: 4.8%</span>
+                </div>
+                <p class="text-xs text-slate-400">Teams: Payments-Team, Infrastructure</p>
+            </div>
+            
+                </div>
+            </div>
+
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 overflow-x-auto">
+                <h3 class="text-lg font-semibold mb-4">Team Performance Summary Table</h3>
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400 text-sm">
+                            <th class="py-3 px-4">Team</th>
+                            <th class="py-3 px-4">CFR %</th>
+                            <th class="py-3 px-4">Failed Deployments</th>
+                            <th class="py-3 px-4">Total Deployments</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700 text-sm">
+                        
+            <tr>
+                <td class="py-3 px-4 font-medium text-slate-200">Payments-Team</td>
+                <td class="py-3 px-4 font-semibold text-amber-400">4.5%</td>
+                <td class="py-3 px-4 text-slate-300">3</td>
+                <td class="py-3 px-4 text-slate-300">67</td>
+            </tr>
+            
+            <tr>
+                <td class="py-3 px-4 font-medium text-slate-200">Infrastructure</td>
+                <td class="py-3 px-4 font-semibold text-amber-400">4.5%</td>
+                <td class="py-3 px-4 text-slate-300">3</td>
+                <td class="py-3 px-4 text-slate-300">67</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Governance Snapshots -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-amber-400 border-b border-slate-800 pb-2">Governance Snapshots</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-100">Incident Data Gaps</h3>
+                        <span class="text-xs bg-red-900/60 text-red-300 font-bold px-2.5 py-1 rounded">Flagged: #it-war-room</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-slate-400">
+                                    <th class="py-2">Incident ID</th>
+                                    <th class="py-2">Missing Field</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700">
+                                <tr><td colspan='2' class='py-2 text-slate-400'>No incident timestamp gaps found.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-100">Unmapped Releases</h3>
+                        <span class="text-xs bg-amber-900/60 text-amber-300 font-bold px-2.5 py-1 rounded">Flagged: #lda-dora-metrics</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-slate-400">
+                                    <th class="py-2">Release Key</th>
+                                    <th class="py-2">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700">
+                                <tr><td colspan='2' class='py-2 text-slate-400'>No unmapped releases found.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // MTTD / MTTR Stacked Bar Chart
+        new Chart(document.getElementById('mttdMttrStackedBar'), {
+            type: 'bar',
+            data: {
+                labels: ["2026-08"],
+                datasets: [
+                    { label: 'Mean MTTD (h)', data: [0.0], backgroundColor: '#38bdf8' },
+                    { label: 'Median MTTD (h)', data: [0.0], backgroundColor: '#0284c7' },
+                    { label: 'Mean MTTR (h)', data: [0.0], backgroundColor: '#f97316' },
+                    { label: 'Median MTTR (h)', data: [0.0], backgroundColor: '#ea580c' }
+                ]
+            },
+            options: { responsive: true, scales: { x: { stacked: false }, y: { beginAtZero: true } } }
+        });
+
+        // YTD Dual Panel Chart
+        new Chart(document.getElementById('ytdDualPanelChart'), {
+            type: 'line',
+            data: {
+                labels: ["2026-08"],
+                datasets: [
+                    { label: 'MTTD (h)', data: [0.0], borderColor: '#38bdf8', yAxisID: 'y' },
+                    { label: 'MTTR (h)', data: [0.0], borderColor: '#f97316', yAxisID: 'y1' }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: 'MTTD (h)' } },
+                    y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'MTTR (h)' } }
+                }
+            }
+        });
+
+        // Root Cause Donut 12m
+        new Chart(document.getElementById('rootCause12mDonut'), {
+            type: 'doughnut',
+            data: { labels: ["Deployment", "Database", "Config"], datasets: [{ data: [12, 5, 1], backgroundColor: ['#38bdf8','#f97316','#10b981','#a855f7','#64748b'] }] }
+        });
+
+        // Root Cause Donut Historical
+        new Chart(document.getElementById('rootCauseHistDonut'), {
+            type: 'doughnut',
+            data: { labels: ["Deployment", "Database", "Other"], datasets: [{ data: [45, 20, 5], backgroundColor: ['#38bdf8','#f97316','#10b981','#a855f7','#64748b'] }] }
+        });
+
+        // Multi-Year CFR Chart
+        new Chart(document.getElementById('multiYearCfrChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2024', '2025', '2026'],
+                datasets: [
+                    { label: 'Successful %', data: [92.5, 94.1, 91.0], backgroundColor: '#10b981' },
+                    { label: 'Failed %', data: [7.5, 5.9, 9.0], backgroundColor: '#ef4444' }
+                ]
+            },
+            options: { responsive: true, scales: { x: { stacked: true }, y: { stacked: true, max: 100 } } }
+        });
+    </script>
+</body>
+</html>

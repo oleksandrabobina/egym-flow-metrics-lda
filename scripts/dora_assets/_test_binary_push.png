@@ -1,1 +1,0 @@
-This was a throwaway probe file created while testing binary-content push behavior for github_create_or_update_file (which UTF-8-encodes text content, corrupting raw binary). No delete-file tool is available, so this file is neutered to plain text. It is unused by any script and safe to ignore.

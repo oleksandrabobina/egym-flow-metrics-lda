@@ -1,0 +1,86 @@
+name: DORA Metrics Automated Pipeline
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Runs on the 1st of every month at 00:00 UTC (02:00 CEST / 01:00 CET German Time)
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grants GitHub Action permission to push commits back to repo
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pandas jinja2 pyyaml python-dotenv
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Initialize Database & Seed Registries
+        env:
+          MAPPING_WEB_APP_URL: ${{ secrets.MAPPING_WEB_APP_URL }}
+          SHEET_CORE_SERVICE_INVENTORY_GID: ${{ secrets.SHEET_CORE_SERVICE_INVENTORY_GID }}
+          SHEET_JIRA_COMPONENTS_GID: ${{ secrets.SHEET_JIRA_COMPONENTS_GID }}
+          SHEET_JIRA_KEYS_RELEASES_GID: ${{ secrets.SHEET_JIRA_KEYS_RELEASES_GID }}
+          SHEET_MI_FW_SERVICE_INVENTORY_GID: ${{ secrets.SHEET_MI_FW_SERVICE_INVENTORY_GID }}
+          SHEET_MSW_FH_SERVICE_INVENTORY_GID: ${{ secrets.SHEET_MSW_FH_SERVICE_INVENTORY_GID }}
+          SHEET_REALMS_TEAM_MAPPING_INCIDENTS_GID: ${{ secrets.SHEET_REALMS_TEAM_MAPPING_INCIDENTS_GID }}
+          SHEET_WELLPASS_SERVICE_INVENTORY_GID: ${{ secrets.SHEET_WELLPASS_SERVICE_INVENTORY_GID }}
+        run: |
+          python database/init_db.py
+          python database/seed_from_sheet.py
+
+      - name: Ingest Raw Telemetry (Jira, GitHub SRE, Incident.io)
+        env:
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAPPING_WEB_APP_URL: ${{ secrets.MAPPING_WEB_APP_URL }}
+          SHEET_JIRA_KEYS_RELEASES_GID: ${{ secrets.SHEET_JIRA_KEYS_RELEASES_GID }}
+          JIRA_URL: ${{ secrets.JIRA_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}
+          SERVICE_INVENTORY_URL: ${{ secrets.SERVICE_INVENTORY_URL }}
+          SERVICE_INVENTORY_API_KEY: ${{ secrets.SERVICE_INVENTORY_API_KEY }}
+          INCIDENT_IO_URL: ${{ secrets.INCIDENT_IO_URL }}
+          INCIDENT_IO_API_KEY: ${{ secrets.INCIDENT_IO_API_KEY }}
+          INCIDENT_EXPORT_SCRIPT: ${{ secrets.INCIDENT_EXPORT_SCRIPT }}
+          WEEKS: ${{ secrets.WEEKS }}
+        run: |
+          python ingestion/jira_fetcher.py || true
+          python ingestion/github_fetcher.py || true
+          python ingestion/incident_fetcher.py || true
+
+      - name: Execute Metric Wrangling Engines
+        env:
+          MAPPING_WEB_APP_URL: ${{ secrets.MAPPING_WEB_APP_URL }}
+        run: |
+          python wrangling/df_cfr_engine.py
+          python wrangling/mttd_mttr_engine.py
+
+      - name: Generate Static HTML Dashboards
+        env:
+          MAPPING_WEB_APP_URL: ${{ secrets.MAPPING_WEB_APP_URL }}
+          SHEET_REALMS_TEAM_MAPPING_INCIDENTS_GID: ${{ secrets.SHEET_REALMS_TEAM_MAPPING_INCIDENTS_GID }}
+          ENABLE_SLACK_NOTIFICATIONS: ${{ secrets.ENABLE_SLACK_NOTIFICATIONS }}
+          SLACK_WEBHOOK_URL_ENGINEERING: ${{ secrets.SLACK_WEBHOOK_URL_ENGINEERING }}
+          SLACK_WEBHOOK_URL_EXECUTIVE: ${{ secrets.SLACK_WEBHOOK_URL_EXECUTIVE }}
+          LANDING_PAGE_PATH: ${{ secrets.LANDING_PAGE_PATH }}
+        run: |
+          python publisher/site_generator.py
+
+      - name: Commit and Push Updated Dashboards
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add -f public/ index.html database/dora_metrics.db
+          git diff-index --quiet HEAD || git commit -m "Auto-update DORA metrics dashboards [skip ci]"
+          git push

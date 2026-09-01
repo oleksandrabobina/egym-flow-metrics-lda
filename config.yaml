@@ -1,0 +1,25 @@
+# DORA Metrics System Configuration
+
+database:
+  path: "database/dora_metrics.db"
+  schema: "database/schema.sql"
+
+publisher:
+  output_dir: "docs"
+  templates:
+    landing: "publisher/landing_template.html"
+    realm_dashboard: "publisher/realm_dashboard_template.html"
+
+ingestion:
+  default_days_lookback: 28
+  default_weeks_lookback: 4
+
+thresholds:
+  cfr_warning_percent: 5.0
+  cfr_critical_percent: 10.0
+  mttd_warning_hours: 4.0
+  mttr_warning_hours: 24.0
+
+defaults:
+  fallback_realm: "Unassigned"
+  fallback_team: "Unassigned"

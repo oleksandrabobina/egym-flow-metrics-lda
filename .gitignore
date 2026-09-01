@@ -1,0 +1,12 @@
+.env
+database/*.db
+.env
+database/*.db
+
+venv/
+.DS_Store
+
+# Ignore temporary CSV exports
+inspected_*.csv
+wrangled_*.csv
+.env

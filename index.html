@@ -1,11 +1,138 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EGYM Flow Metrics</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#0c0f1a;color:#e4eaf5;font-family:'Segoe UI',system-ui,sans-serif;padding:40px 24px;max-width:800px;margin:0 auto;text-align:center}h1{font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}h1 span{color:#60a5fa}.sub{color:#7a87a0;font-size:.85rem;margin-bottom:40px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;text-align:left}footer{margin-top:40px;font-size:.72rem;color:#4a5568}</style>
-</head><body>
-<h1>EGYM <span>Flow Metrics</span></h1>
-<div class="sub">Monthly dashboards · FL1 Tasks &amp; FL2 Epics · All realms</div>
-<a href="global-dashboard.html" style="display:inline-block;margin-bottom:24px;background:#1e2540;border:1px solid #2f3a5f;border-radius:10px;padding:10px 16px;color:#60a5fa;text-decoration:none;font-size:.8rem;font-weight:600">🌐 Global Engineering View (all realms) →</a>
-<div class="grid"><a href="apps/index.html" style="background:#141828;border:1px solid #252c45;border-radius:14px;padding:22px 24px;text-decoration:none;color:#e4eaf5;display:block;position:relative;overflow:hidden"><div style="font-size:1.8rem;margin-bottom:10px">📱</div><div style="font-size:1.05rem;font-weight:700;margin-bottom:4px">Apps Realm</div><div style="font-size:.75rem;color:#7a87a0">4 teams · Latest: Jul 26</div></a><a href="core/index.html" style="background:#141828;border:1px solid #252c45;border-radius:14px;padding:22px 24px;text-decoration:none;color:#e4eaf5;display:block;position:relative;overflow:hidden"><div style="font-size:1.8rem;margin-bottom:10px">⚙️</div><div style="font-size:1.05rem;font-weight:700;margin-bottom:4px">Core Realm</div><div style="font-size:.75rem;color:#7a87a0">5 teams · Latest: Aug 26</div></a><a href="machine/index.html" style="background:#141828;border:1px solid #252c45;border-radius:14px;padding:22px 24px;text-decoration:none;color:#e4eaf5;display:block;position:relative;overflow:hidden"><div style="font-size:1.8rem;margin-bottom:10px">🤖</div><div style="font-size:1.05rem;font-weight:700;margin-bottom:4px">Machine Realm</div><div style="font-size:.75rem;color:#7a87a0">8 teams · Latest: Jul 26</div></a><a href="wellpass/index.html" style="background:#141828;border:1px solid #252c45;border-radius:14px;padding:22px 24px;text-decoration:none;color:#e4eaf5;display:block;position:relative;overflow:hidden"><div style="font-size:1.8rem;margin-bottom:10px">💚</div><div style="font-size:1.05rem;font-weight:700;margin-bottom:4px">Wellpass Realm</div><div style="font-size:.75rem;color:#7a87a0">8 teams · Latest: Jul 26</div></a></div>
-<footer>Auto-generated · Nave + Jira via Notion</footer>
-</body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGYM Engineering Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Her original custom styling rules for Section 1 */
+        .flow-section { background:#0c0f1a; color:#e4eaf5; font-family:'Segoe UI',system-ui,sans-serif; text-align:center; padding: 20px 0; }
+        .flow-sub { color:#7a87a0; font-size:.85rem; margin-bottom:24px; }
+        .flow-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; text-align:left; }
+        .flow-card { background:#141828; border:1px solid #252c45; border-radius:14px; padding:22px 24px; text-decoration:none; color:#e4eaf5; display:block; position:relative; overflow:hidden; }
+        .flow-footer { margin-top:24px; font-size:.72rem; color:#4a5568; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-8">
+    <div class="max-w-6xl mx-auto space-y-12">
+        <main class="space-y-12">
+            
+            <!-- SECTION 1: HER EXACT ORIGINAL FLOW METRICS HTML -->
+            <section class="flow-section rounded-2xl p-6 border border-slate-800">
+                <h1 style="font-size:1.7rem; font-weight:800; letter-spacing:-.03em; margin-bottom:6px;">EGYM <span style="color:#60a5fa">Flow Metrics</span></h1>
+                <div class="flow-sub">Monthly dashboards · FL1 Tasks &amp; FL2 Epics · All realms</div>
+                <a href="global-dashboard.html" style="display:inline-block; margin-bottom:24px; background:#1e2540; border:1px solid #2f3a5f; border-radius:10px; padding:10px 16px; color:#60a5fa; text-decoration:none; font-size:.8rem; font-weight:600">🌐 Global Engineering View (all realms) →</a>
+                
+                <div class="flow-grid">
+                    <a href="apps/index.html" class="flow-card">
+                        <div style="font-size:1.8rem; margin-bottom:10px">📱</div>
+                        <div style="font-size:1.05rem; font-weight:700; margin-bottom:4px">Apps Realm</div>
+                        <div style="font-size:.75rem; color:#7a87a0">4 teams · Latest: Jul 26</div>
+                    </a>
+                    <a href="core/index.html" class="flow-card">
+                        <div style="font-size:1.8rem; margin-bottom:10px">⚙️</div>
+                        <div style="font-size:1.05rem; font-weight:700; margin-bottom:4px">Core Realm</div>
+                        <div style="font-size:.75rem; color:#7a87a0">5 teams · Latest: Aug 26</div>
+                    </a>
+                    <a href="machine/index.html" class="flow-card">
+                        <div style="font-size:1.8rem; margin-bottom:10px">🤖</div>
+                        <div style="font-size:1.05rem; font-weight:700; margin-bottom:4px">Machine Realm</div>
+                        <div style="font-size:.75rem; color:#7a87a0">8 teams · Latest: Jul 26</div>
+                    </a>
+                    <a href="wellpass/index.html" class="flow-card">
+                        <div style="font-size:1.8rem; margin-bottom:10px">💚</div>
+                        <div style="font-size:1.05rem; font-weight:700; margin-bottom:4px">Wellpass Realm</div>
+                        <div style="font-size:.75rem; color:#7a87a0">8 teams · Latest: Jul 26</div>
+                    </a>
+                </div>
+                <div class="flow-footer">Auto-generated · Nave + Jira via Notion</div>
+            </section>
+
+            <hr class="border-slate-800">
+
+            <!-- SECTION 2: EGYM DORA METRICS PART 1 (INCIDENTS) -->
+            <section>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-sky-400">EGYM DORA Metrics</h2>
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">(PART 1 - INCIDENTS (MTTD & MTTR))</p>
+                    <p class="text-sm text-slate-400 mt-1">Monthly dashboards · All realms</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+        <a href="public/machines-realm-i---osandfw.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm I - OS&FW</h3>
+            <p class="text-sm text-slate-400 mt-2">6 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/core.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">⚙️ Core</h3>
+            <p class="text-sm text-slate-400 mt-2">8 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/machines-realm-ii---msw-and-fh.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm II - MSW & FH</h3>
+            <p class="text-sm text-slate-400 mt-2">9 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/wellpass.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">💚 Wellpass</h3>
+            <p class="text-sm text-slate-400 mt-2">17 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/realm-support-services.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">🛠️ Realm Support Services</h3>
+            <p class="text-sm text-slate-400 mt-2">1 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+        <a href="public/apps.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+            <h3 class="text-xl font-bold text-sky-400">📱 Apps</h3>
+            <p class="text-sm text-slate-400 mt-2">7 teams · Latest: Sep 26</p>
+            <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+        </a>
+                </div>
+            </section>
+
+            <hr class="border-slate-800">
+
+            <!-- SECTION 3: EGYM DORA METRICS PART 2 (CFR & DEFECT RATE) -->
+            <section>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-sky-400">EGYM DORA Metrics</h2>
+                    <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">(PART 2 - CHANGE FAILURE RATE & DEFECT RATE)</p>
+                    <p class="text-sm text-slate-400 mt-1">Monthly dashboards · All realms</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+            <a href="public/machines-realm-i---osandfw-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm I - OS&FW</h3>
+                <p class="text-sm text-slate-400 mt-2">6 teams · Latest: Sep 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/core-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">⚙️ Core</h3>
+                <p class="text-sm text-slate-400 mt-2">8 teams · Latest: Sep 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/machines-realm-ii---msw-and-fh-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">🤖 Machines Realm II - MSW & FH</h3>
+                <p class="text-sm text-slate-400 mt-2">9 teams · Latest: Sep 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/wellpass-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">💚 Wellpass</h3>
+                <p class="text-sm text-slate-400 mt-2">17 teams · Latest: Sep 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+            <a href="public/apps-cfr-dashboard.html" class="block bg-slate-800 p-6 rounded-xl border border-slate-700 hover:border-sky-400 transition-colors">
+                <h3 class="text-xl font-bold text-sky-400">📱 Apps</h3>
+                <p class="text-sm text-slate-400 mt-2">7 teams · Latest: Sep 26</p>
+                <div class="mt-4 flex items-center text-xs text-sky-300 font-semibold">Open Dashboard &rarr;</div>
+            </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
